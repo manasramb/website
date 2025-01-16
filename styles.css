@@ -1,0 +1,260 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f5f5;
+    color: #2a2a2a;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #d9d9d9, #ecf0f1);
+    color: #154360;
+    padding: 20px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Title Styling */
+header h1 {
+    font-size: 7rem; /* Keep the overall size */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px #00000050;
+    position: relative;
+    display: inline-block;
+}
+
+header h1 .gig {
+    font-family: 'Orbitron', sans-serif; /* Bold and futuristic font */
+    color: #154360; /* Light yellow for contrast */
+}
+
+header h1 .copilot {
+    font-family: 'Inter', sans-serif; /* Simple and clean font */
+    color: #2874a6; /* Teal for contrast */
+}
+
+header h1 span.cursor {
+    display: inline-block;
+    width: 25px;
+    height: 11px;
+    background: #1b2631;
+    margin-left: 5px;
+    animation: blink-horizontal 0.8s infinite;
+}
+
+@keyframes blink-horizontal {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    color: black;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: darkgray;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://as2.ftcdn.net/v2/jpg/01/29/97/61/1000_F_129976102_BIjalN3eWrizAHVf6HkVZmMFfxjgTVXV.jpg') no-repeat center center/cover;
+    color: white;
+    height: calc(125vh); /* 25% larger than standard viewport */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+    position: relative;
+    overflow: hidden;
+    padding: 20px; /* Add some padding for spacing on smaller screens */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for readability */
+    z-index: 1;
+}
+
+.hero h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem; /* Adjusted for better visibility */
+    margin-bottom: 20px;
+    color: #ffed9a; /* Subtle contrast for emphasis */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    position: relative; /* Stay above overlay */
+    z-index: 2;
+}
+
+.hero p {
+    font-size: 1.5rem; /* Slightly larger for better readability */
+    margin-bottom: 30px;
+    color: #f0f0f0; /* Softer white for contrast */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.hero a {
+    background: #76d7c4;
+    color: ghostwhite;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.hero a:hover {
+    background: #f0d878;
+    color: #2a2a2a;
+    transform: scale(1.1);
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    overflow: hidden;
+    position: relative;
+    background: #f5f5f5;
+}
+
+.feature-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Matches the height of .features */
+    text-align: center;
+}
+
+.feature-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ensure the feature card matches the full container height */
+    background-size: cover; /* Ensures the image fully covers the card */
+    background-position: center; /* Centers the image */
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.feature-card.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.feature-card:nth-child(1) {
+    background-image: url('resources/hotspots-image.png');
+}
+
+.feature-card:nth-child(2) {
+    background-image: url('resources/digital-handshake.png');
+}
+
+.feature-card:nth-child(3) {
+    background-image: url('resources/adv-analytics.webp');
+}
+
+.feature-card h3 {
+    font-size: 3.5rem;
+    color: whitesmoke;
+}
+
+.feature-card p {
+    font-size: 2rem;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background: #515a5a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer .footer-cta {
+    color: #ffed9a;
+    text-decoration: underline;
+}
+
+/* Progress Section */
+.progress-section {
+    background: #f5f5f5;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.progress-section h2 {
+    font-size: 2.5rem;
+    color: #154360;
+    margin-bottom: 20px;
+}
+
+.progress-container {
+    width: 80%;
+    max-width: 800px;
+    background: #d9d9d9;
+    border-radius: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 30px;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0; /* Start at 0% */
+    background: linear-gradient(90deg, #4f3ed5, #5a95ff);
+    transition: width 2s ease-in-out; /* Smooth transition */
+}
+
+#progress-text {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #2a2a2a;
+}
+
+
