@@ -1,4 +1,4 @@
-/* General Reset */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap'); /* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, white, snow);
+    background: linear-gradient(180deg, black, black);
     position: relative;
     overflow: hidden;
 }
@@ -35,9 +35,11 @@ body {
     animation: rotate 10s linear infinite;
 }
 
+/* Import Pirata One font */
+
 .rotating-logo-container h1 {
     font-size: 22rem;
-    font-family: 'Gill Sans', sans-serif;
+    font-family: 'Pirata One', cursive;
     color: goldenrod;
     margin-top: 100px;
     font-weight: normal;
