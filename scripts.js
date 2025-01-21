@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < 5; i++) {
         const car = document.createElement('div');
-        car.style.width = '300px';
+        car.style.width = '200px';
         car.style.height = '5px';
-        car.style.background = i % 2 === 0 ? 'yellow' : 'black';
+        car.style.background = i % 4 === 0 ? 'red' : 'blue';
         car.style.position = 'absolute';
         car.style.bottom = '0';
         car.style.left = `${-100 * (i + 1)}px`;

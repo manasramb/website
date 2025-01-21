@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="font update">
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="updating animation styles for lines">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.js" afterDir="false" />
     </list>
@@ -85,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736961467705</updated>
       <workItem from="1736961468767" duration="10882000" />
-      <workItem from="1737438943249" duration="10717000" />
+      <workItem from="1737438943249" duration="11092000" />
     </task>
     <task id="LOCAL-00001" summary="second commit + clean up">
       <option name="closed" value="true" />
@@ -151,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737452322449</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updating animation styles for lines">
+      <option name="closed" value="true" />
+      <created>1737452812012</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737452812013</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +185,7 @@
     <MESSAGE value="logo update and other css changes for mobile devices" />
     <MESSAGE value="updating black bg logo and changing the font" />
     <MESSAGE value="font update" />
-    <option name="LAST_COMMIT_MESSAGE" value="font update" />
+    <MESSAGE value="updating animation styles for lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="updating animation styles for lines" />
   </component>
 </project>
