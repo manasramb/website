@@ -6,142 +6,52 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Arial', sans-serif;
     background: #f5f5f5;
     color: #2a2a2a;
-    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Header */
-header {
-    background: linear-gradient(90deg, #d9d9d9, #ecf0f1);
-    color: #154360;
-    padding: 20px 0;
+/* Landing Section */
+.landing {
+    height: 170vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, white, snow);
+    position: relative;
+    overflow: hidden;
+}
+
+.rotating-logo-container {
     text-align: center;
-    position: sticky;
-    top: 0;
+    position: inherit; /* Ensures proper alignment */
     z-index: 10;
 }
 
-/* Title Styling */
-header h1 {
-    font-size: 7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 8px #00000050;
-    position: relative;
-    display: inline-block;
+.rotating-logo {
+    width: 700px;
+    height: 900px;
+    animation: rotate 10s linear infinite;
 }
 
-header h1 .gig {
-    font-family: 'Orbitron', sans-serif;
-    color: #154360;
+.rotating-logo-container h1 {
+    font-size: 22rem;
+    font-family: 'Gill Sans', sans-serif;
+    color: goldenrod;
+    margin-top: 100px;
+    font-weight: normal;
+    letter-spacing: 15px;
 }
 
-header h1 .copilot {
-    font-family: 'Inter', sans-serif;
-    color: #2874a6;
-}
-
-header h1 span.cursor {
-    display: inline-block;
-    width: 25px;
-    height: 11px;
-    background: #1b2631;
-    margin-left: 5px;
-    animation: blink-horizontal 0.8s infinite;
-}
-
-@keyframes blink-horizontal {
-    0%, 100% {
-        opacity: 1;
+/* Keyframes for Logo Rotation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
     }
-    50% {
-        opacity: 0;
+    to {
+        transform: rotate(360deg);
     }
-}
-
-header nav {
-    margin-top: 10px;
-}
-
-header nav a {
-    color: black;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-header nav a:hover {
-    color: darkgray;
-}
-
-/* Hero Section */
-.hero {
-    background: url('https://as2.ftcdn.net/v2/jpg/01/29/97/61/1000_F_129976102_BIjalN3eWrizAHVf6HkVZmMFfxjgTVXV.jpg') no-repeat center center/cover;
-    color: white;
-    height: calc(125vh);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 20px;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
-}
-
-.hero h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    color: #ffed9a;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-    position: relative;
-    z-index: 2;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    color: #f0f0f0;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-    position: relative;
-    z-index: 2;
-}
-
-.hero a {
-    background: #76d7c4;
-    color: ghostwhite;
-    padding: 15px 40px;
-    border-radius: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 2;
-}
-
-.hero a:hover {
-    background: #f0d878;
-    color: #2a2a2a;
-    transform: scale(1.1);
 }
 
 /* Features Section */
@@ -149,134 +59,193 @@ header nav a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    background: #f5f5f5;
+    flex-direction: column; /* Stack content vertically */
+    background: goldenrod;
+    padding: 60px 20px;
+    text-align: center;
+    min-height: 100vh; /* Ensure full height for all screens */
 }
 
-.feature-carousel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
+.features h2 {
+    font-size: 5.5rem;
+    color: black;
+    margin-bottom: 40px;
+}
+
+/* Features Section */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 30px;
+    padding: 20px;
 }
 
 .feature-card {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    background-size: cover; /* Ensure the background image covers the card */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    height: 400px; /* Larger height for emphasis */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
     padding: 20px;
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+    opacity: 1; /* Ensure the card is visible by default */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.feature-card.active {
-    opacity: 1;
-    transform: scale(1);
+.feature-card:hover {
+    transform: scale(1.65); /* Slight zoom effect */
+}
+
+.feature-text {
+    display: none; /* Remove previous implementation */
 }
 
 .feature-card:nth-child(1) {
-    background-image: url('resources/hotspots-image.png');
+    background-image: url('resources/hotspots-image.png'); /* Replace with actual image URL */
 }
 
 .feature-card:nth-child(2) {
-    background-image: url('resources/digital-handshake.png');
+    background-image: url('resources/digital-handshake.png'); /* Replace with actual image URL */
 }
 
+/* Special styling for the last feature card */
 .feature-card:nth-child(3) {
-    background-image: url('resources/adv-analytics.webp');
+    background-image: url('resources/adv-analytics.webp'); /* Replace with actual image URL */
+    color: black; /* Black text for this card */
 }
 
-.feature-card h3 {
-    font-size: 3.5rem;
-    color: whitesmoke;
+/* Transition Effects */
+.logo-expand {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('/resources/symbol3.0.jpg') no-repeat center center/contain;
+    z-index: 100;
+    animation: expandLogo 1.5s ease-in-out forwards;
 }
 
-.feature-card p {
-    font-size: 2rem;
-    color: white;
-}
-
-/* Footer */
-footer {
-    background: #515a5a;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-footer .footer-cta {
-    color: #ffed9a;
-    text-decoration: underline;
-}
-
-/* Progress Section */
-.progress-section {
-    background: #f5f5f5;
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.progress-section h2 {
-    font-size: 2.5rem;
-    color: #154360;
-    margin-bottom: 20px;
-}
-
-.progress-container {
-    width: 80%;
-    max-width: 800px;
-    background: #d9d9d9;
-    border-radius: 30px;
-    margin: 0 auto;
-    overflow: hidden;
-    height: 30px;
-    position: relative;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, #4f3ed5, #5a95ff);
-    transition: width 2s ease-in-out;
-}
-
-#progress-text {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    color: #2a2a2a;
+@keyframes expandLogo {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0;
+    }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 4rem;
+    .rotating-logo-container h1 {
+        font-size: 2rem;
     }
-    .hero h2 {
-        font-size: 2.5rem;
+
+    .rotating-logo {
+        width: 100px;
+        height: 100px;
     }
-    .hero p {
-        font-size: 1.2rem;
+
+    .features h2 {
+        font-size: 2rem;
     }
-    .hero a {
-        padding: 10px 20px;
-        font-size: 1rem;
-    }
-    .feature-card h3 {
-        font-size: 2.5rem;
-    }
-    .feature-card p {
-        font-size: 1.2rem;
+
+    .features-grid {
+        grid-template-columns: 1fr;
     }
 }
+
+/* Footer Section */
+footer {
+    background: lightyellow;
+    color: darkslategray;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #76d7c4;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #f0d878;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .rotating-logo-container h1 {
+        font-size: 15rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .feature-card {
+        height: 300px;
+        font-size: 1.2rem;
+    }
+
+    footer {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .rotating-logo-container h1 {
+        font-size: 10rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        height: 250px;
+        font-size: 1rem;
+    }
+
+    footer {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .rotating-logo-container h1 {
+        font-size: 7rem;
+    }
+
+    .features-grid {
+        gap: 15px;
+    }
+
+    .feature-card {
+        height: 200px;
+        font-size: 0.8rem;
+    }
+
+    footer {
+        padding: 8px;
+        font-size: 0.7rem;
+    }
+}
+
