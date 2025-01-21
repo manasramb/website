@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="logo update and other css changes for mobile devices">
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="updating black bg logo and changing the font">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/symbol3.0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/symbol3.0.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736961467705</updated>
       <workItem from="1736961468767" duration="10882000" />
-      <workItem from="1737438943249" duration="10024000" />
+      <workItem from="1737438943249" duration="10262000" />
     </task>
     <task id="LOCAL-00001" summary="second commit + clean up">
       <option name="closed" value="true" />
@@ -136,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737450872689</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updating black bg logo and changing the font">
+      <option name="closed" value="true" />
+      <created>1737452154272</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737452154273</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +167,7 @@
     <MESSAGE value="version 2.0" />
     <MESSAGE value="version 2.0, with the build section" />
     <MESSAGE value="logo update and other css changes for mobile devices" />
-    <option name="LAST_COMMIT_MESSAGE" value="logo update and other css changes for mobile devices" />
+    <MESSAGE value="updating black bg logo and changing the font" />
+    <option name="LAST_COMMIT_MESSAGE" value="updating black bg logo and changing the font" />
   </component>
 </project>

@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Pirata One', cursive;
     background: #f5f5f5;
     color: #2a2a2a;
     overflow-x: hidden;
@@ -312,7 +312,7 @@ footer a:hover {
 
     footer {
         padding: 8px;
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 }
 
