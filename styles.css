@@ -240,6 +240,14 @@ footer a:hover {
         font-size: 1.2rem;
     }
 
+    .progress-section h2 {
+        font-size: 2rem;
+    }
+
+    .progress-container {
+        width: 90%;
+    }
+
     footer {
         padding: 15px;
         font-size: 0.9rem;
@@ -260,6 +268,10 @@ footer a:hover {
         font-size: 1rem;
     }
 
+    .progress-section h2 {
+        font-size: 1.8rem;
+    }
+
     footer {
         padding: 10px;
         font-size: 0.8rem;
@@ -278,6 +290,14 @@ footer a:hover {
     .feature-card {
         height: 200px;
         font-size: 0.8rem;
+    }
+
+    .progress-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .progress-container {
+        height: 20px;
     }
 
     footer {

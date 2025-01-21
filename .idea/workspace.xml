@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="version 2.0">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
-    </list>
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="version 2.0, with the build section" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736961467705</updated>
       <workItem from="1736961468767" duration="10882000" />
-      <workItem from="1737438943249" duration="6430000" />
+      <workItem from="1737438943249" duration="6601000" />
     </task>
     <task id="LOCAL-00001" summary="second commit + clean up">
       <option name="closed" value="true" />
@@ -112,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737446386153</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="version 2.0, with the build section">
+      <option name="closed" value="true" />
+      <created>1737447044183</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737447044183</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +138,7 @@
     <MESSAGE value="second commit + clean up" />
     <MESSAGE value="commit to ensure site renders correctly on mobile devices" />
     <MESSAGE value="version 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 2.0" />
+    <MESSAGE value="version 2.0, with the build section" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 2.0, with the build section" />
   </component>
 </project>
