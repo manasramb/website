@@ -231,13 +231,13 @@ footer a:hover {
         font-size: 15rem;
     }
 
-    .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .rotating-logo {
+        width: 140vw; /* Force larger size for mobile */
+        height: 180vw;
     }
 
-    .feature-card {
-        height: 300px;
-        font-size: 1.2rem;
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
     .progress-section h2 {
@@ -259,13 +259,17 @@ footer a:hover {
         font-size: 10rem;
     }
 
-    .features-grid {
-        grid-template-columns: 1fr;
+    .landing {
+        height: 170vh;
     }
 
-    .feature-card {
-        height: 250px;
-        font-size: 1rem;
+    .rotating-logo {
+        width: 140vw; /* Force larger size for mobile */
+        height: 180vw;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
     }
 
     .progress-section h2 {
@@ -280,16 +284,20 @@ footer a:hover {
 
 @media (max-width: 480px) {
     .rotating-logo-container h1 {
-        font-size: 7rem;
+        font-size: 8rem;
+    }
+
+    .landing {
+        height: 190vh;
+    }
+
+    .rotating-logo {
+        width: 140vw; /* Force larger size for mobile */
+        height: 180vw;
     }
 
     .features-grid {
         gap: 15px;
-    }
-
-    .feature-card {
-        height: 200px;
-        font-size: 0.8rem;
     }
 
     .progress-section h2 {
