@@ -166,6 +166,43 @@ body {
     }
 }
 
+/* Build Progress Section */
+.progress-section {
+    background: lightyellow;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.progress-section h2 {
+    font-size: 2.5rem;
+    color: #154360;
+    margin-bottom: 20px;
+}
+
+.progress-container {
+    width: 80%;
+    max-width: 800px;
+    background: #d9d9d9;
+    border-radius: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 30px;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0; /* Start at 0% */
+    background: linear-gradient(90deg, #4f3ed5, #5a95ff);
+    transition: width 2s ease-in-out; /* Smooth transition */
+}
+
+#progress-text {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #2a2a2a;
+}
+
 /* Footer Section */
 footer {
     background: lightyellow;

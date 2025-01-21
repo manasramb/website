@@ -30,6 +30,29 @@
         </div>
     </div>
 </section>
+
+<section class="progress-section">
+    <h2>Build Progress</h2>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <p id="progress-text">Building... 0%</p>
+</section>
+
+<script>
+    // JavaScript to animate the progress bar
+    let progress = 0;
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    function updateProgress() {
+        progress = (progress + 1) % 31; // Increment progress and reset to 0 after 100%
+        progressBar.style.width = progress + '%';
+        progressText.textContent = `Building... ${progress}%`;
+    }
+
+    setInterval(updateProgress, 100); // Update every 100ms for a smooth animation
+</script>
 <footer>
     <p>&copy; 2025 GigCopilot. All Rights Reserved.</p>
     <p>
