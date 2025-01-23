@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="fixing progress bar css and footer alignment">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
-    </list>
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="moving title section to the top. removing money section and into time section" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +83,7 @@
       <updated>1736961467705</updated>
       <workItem from="1736961468767" duration="10882000" />
       <workItem from="1737438943249" duration="14376000" />
-      <workItem from="1737657899057" duration="363000" />
+      <workItem from="1737657899057" duration="779000" />
     </task>
     <task id="LOCAL-00001" summary="second commit + clean up">
       <option name="closed" value="true" />
@@ -185,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737656743998</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="moving title section to the top. removing money section and into time section">
+      <option name="closed" value="true" />
+      <created>1737658305964</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737658305964</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +219,7 @@
     <MESSAGE value="switching back to red and blue lines" />
     <MESSAGE value="adding new sections to the website." />
     <MESSAGE value="fixing progress bar css and footer alignment" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing progress bar css and footer alignment" />
+    <MESSAGE value="moving title section to the top. removing money section and into time section" />
+    <option name="LAST_COMMIT_MESSAGE" value="moving title section to the top. removing money section and into time section" />
   </component>
 </project>
