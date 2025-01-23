@@ -285,7 +285,7 @@ body {
 .final-section .tagline {
     font-size: 5rem;
     margin-top: 20px;
-    animation: typewriter 3s steps(20) 1.5s forwards;
+    animation: typewriter 2s steps(15) 0.5s forwards;
     overflow: hidden;
     white-space: nowrap;
     border-right: 3px solid white;
@@ -305,10 +305,10 @@ body {
 
 @keyframes typewriter {
     from {
-        width: 0;
+        width: 40%;
     }
     to {
-        width: 100%;
+        width: 60%;
     }
 }
 
