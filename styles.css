@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap'); /* General Reset */
+/* General Reset */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +16,7 @@ body {
 
 /* Landing Section */
 .landing {
-    height: 170vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,25 +27,27 @@ body {
 
 .rotating-logo-container {
     text-align: center;
-    position: inherit; /* Ensures proper alignment */
+    position: relative;
     z-index: 10;
 }
 
 .rotating-logo {
-    width: 700px;
-    height: 900px;
+    width: 30vw;
+    height: 40vw;
+    max-width: 700px;
+    max-height: 900px;
+    min-width: 200px;
+    min-height: 300px;
     animation: rotate 10s linear infinite;
 }
 
-/* Import Pirata One font */
-
 .rotating-logo-container h1 {
-    font-size: 22rem;
-    font-family: 'Pirata One', cursive;
+    font-size: 8rem;
     color: goldenrod;
-    margin-top: 100px;
+    margin-top: 20px;
     font-weight: normal;
     letter-spacing: 15px;
+    text-align: center;
 }
 
 /* Keyframes for Logo Rotation */
@@ -54,6 +58,96 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Centered Sections Styling */
+.center-sections {
+    position: relative;
+}
+
+.center-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Stick No Bills', sans-serif;
+    background: white;
+    color: black;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-in-out;
+}
+
+.center-section h1 {
+    font-size: 6rem;
+    font-weight: bold;
+}
+
+.center-section.time {
+    background: #eaf4fc;
+}
+
+.center-section.money {
+    background: #fef9e7;
+}
+
+.center-section.maximized {
+    background: #e8f5e9;
+}
+
+/* Final Section */
+.final-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: 'Pirata One', cursive;
+}
+
+.final-section .gigcopilot {
+    font-size: 9rem;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.final-section .tagline {
+    font-size: 5rem;
+    margin-top: 20px;
+    animation: typewriter 3s steps(20) 1.5s forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Scroll Animations */
+.center-section.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Features Section */
@@ -74,10 +168,9 @@ body {
     margin-bottom: 40px;
 }
 
-/* Features Section */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     padding: 20px;
 }
@@ -86,7 +179,7 @@ body {
     background-size: cover; /* Ensure the background image covers the card */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent tiling */
-    height: 400px; /* Larger height for emphasis */
+    height: 300px; /* Adjusted for responsiveness */
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -104,25 +197,20 @@ body {
 }
 
 .feature-card:hover {
-    transform: scale(1.65); /* Slight zoom effect */
-}
-
-.feature-text {
-    display: none; /* Remove previous implementation */
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
 .feature-card:nth-child(1) {
-    background-image: url('resources/hotspots-image.png'); /* Replace with actual image URL */
+    background-image: url('resources/hotspots-image.png');
 }
 
 .feature-card:nth-child(2) {
-    background-image: url('resources/digital-handshake.png'); /* Replace with actual image URL */
+    background-image: url('resources/digital-handshake.png');
 }
 
-/* Special styling for the last feature card */
 .feature-card:nth-child(3) {
-    background-image: url('resources/adv-analytics.webp'); /* Replace with actual image URL */
-    color: black; /* Black text for this card */
+    background-image: url('resources/adv-analytics.webp');
+    color: black;
 }
 
 /* Transition Effects */
@@ -149,133 +237,39 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .rotating-logo-container h1 {
-        font-size: 2rem;
-    }
-
-    .rotating-logo {
-        width: 100px;
-        height: 100px;
-    }
-
-    .features h2 {
-        font-size: 2rem;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Build Progress Section */
-.progress-section {
-    background: lightyellow;
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.progress-section h2 {
-    font-size: 2.5rem;
-    color: #154360;
-    margin-bottom: 20px;
-}
-
-.progress-container {
-    width: 80%;
-    max-width: 800px;
-    background: #d9d9d9;
-    border-radius: 30px;
-    margin: 0 auto;
-    overflow: hidden;
-    height: 30px;
-    position: relative;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0; /* Start at 0% */
-    background: linear-gradient(90deg, #4f3ed5, #5a95ff);
-    transition: width 2s ease-in-out; /* Smooth transition */
-}
-
-#progress-text {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    color: #2a2a2a;
-}
-
-/* Footer Section */
-footer {
-    background: lightyellow;
-    color: darkslategray;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-footer a {
-    color: #76d7c4;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: #f0d878;
-}
-
-/* Responsive Design */
 @media (max-width: 1024px) {
-    .rotating-logo-container h1 {
-        font-size: 15rem;
-    }
-
     .rotating-logo {
-        width: 140vw; /* Force larger size for mobile */
-        height: 180vw;
+        width: 40vw;
+        height: 50vw;
     }
 
     .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .feature-card {
+        height: 250px;
+        font-size: 1.2rem;
     }
 
     .progress-section h2 {
         font-size: 2rem;
     }
-
-    .progress-container {
-        width: 90%;
-    }
-
-    footer {
-        padding: 15px;
-        font-size: 0.9rem;
-    }
 }
 
 @media (max-width: 768px) {
-    .rotating-logo-container h1 {
-        font-size: 10rem;
-    }
-
-    .landing {
-        height: 170vh;
-    }
-
     .rotating-logo {
-        width: 140vw; /* Force larger size for mobile */
-        height: 180vw;
+        width: 60vw;
+        height: 70vw;
     }
 
     .features-grid {
         grid-template-columns: 1fr;
     }
 
-    .progress-section h2 {
-        font-size: 1.8rem;
+    .feature-card {
+        height: 220px;
+        font-size: 1rem;
     }
 
     footer {
@@ -285,34 +279,41 @@ footer a:hover {
 }
 
 @media (max-width: 480px) {
-    .rotating-logo-container h1 {
-        font-size: 8rem;
-    }
-
-    .landing {
-        height: 190vh;
-    }
-
     .rotating-logo {
-        width: 140vw; /* Force larger size for mobile */
-        height: 180vw;
+        width: 90vw;
+        height: 115vw;
+    }
+
+    .center-section h1 {
+        font-size: 4rem;
+        font-weight: bold;
+    }
+
+    .final-section .gigcopilot {
+        font-size: 4rem;
+        animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    .final-section .tagline {
+        font-size: 2rem;
+        margin-top: 20px;
+        animation: typewriter 3s steps(20) 1.5s forwards;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 3px solid white;
     }
 
     .features-grid {
         gap: 15px;
     }
 
-    .progress-section h2 {
-        font-size: 1.5rem;
-    }
-
-    .progress-container {
-        height: 20px;
+    .feature-card {
+        height: 200px;
+        font-size: 0.8rem;
     }
 
     footer {
         padding: 8px;
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 }
-

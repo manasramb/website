@@ -5,11 +5,11 @@ window.addEventListener('scroll', () => {
     const featuresSection = document.querySelector('.features');
 
     // Scale down the logo as the user scrolls
-    const scale = Math.max(1 - scrollY / 300, 0.5); // Minimum scale of 0.5
+    const scale = Math.max(1 - scrollY / 500, 0.5); // Minimum scale of 0.5
     logoContainer.style.transform = `scale(${scale})`;
 
     // Expand the logo when a certain scroll threshold is reached
-    if (scrollY > 300 && !logoContainer.classList.contains('logo-expand')) {
+    if (scrollY > 500 && !logoContainer.classList.contains('logo-expand')) {
         logoContainer.classList.add('logo-expand');
         setTimeout(() => {
             logoContainer.style.display = 'none';
@@ -36,11 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
     carAnimationContainer.style.zIndex = '1000';
     carAnimationContainer.style.pointerEvents = 'none';
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 25; i++) {
         const car = document.createElement('div');
-        car.style.width = '200px';
-        car.style.height = '5px';
-        car.style.background = i % 4 === 0 ? 'red' : 'blue';
+        car.style.width = '50px';
+        car.style.height = '25px';
+        car.style.background = i % 2 === 0 ? 'red' : 'blue';
         car.style.position = 'absolute';
         car.style.bottom = '0';
         car.style.left = `${-100 * (i + 1)}px`;
@@ -64,4 +64,26 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 });
+
+// Select sections
+const sections = document.querySelectorAll('.center-section');
+const finalSection = document.querySelector('.final-section');
+
+// Add scroll event listener
+window.addEventListener('scroll', () => {
+    sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight / 1.5;
+
+        if (sectionTop < triggerPoint) {
+            section.classList.add('active');
+        }
+    });
+
+    const finalSectionTop = finalSection.getBoundingClientRect().top;
+    if (finalSectionTop < window.innerHeight / 1.5) {
+        finalSection.classList.add('active');
+    }
+});
+
 
