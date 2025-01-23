@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="switching back to red and blue lines">
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="adding new sections to the website.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736961467705</updated>
       <workItem from="1736961468767" duration="10882000" />
-      <workItem from="1737438943249" duration="13122000" />
+      <workItem from="1737438943249" duration="14092000" />
     </task>
     <task id="LOCAL-00001" summary="second commit + clean up">
       <option name="closed" value="true" />
@@ -169,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737479559083</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="adding new sections to the website.">
+      <option name="closed" value="true" />
+      <created>1737654813198</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737654813199</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +203,7 @@
     <MESSAGE value="font update" />
     <MESSAGE value="updating animation styles for lines" />
     <MESSAGE value="switching back to red and blue lines" />
-    <option name="LAST_COMMIT_MESSAGE" value="switching back to red and blue lines" />
+    <MESSAGE value="adding new sections to the website." />
+    <option name="LAST_COMMIT_MESSAGE" value="adding new sections to the website." />
   </component>
 </project>
