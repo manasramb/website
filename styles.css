@@ -689,6 +689,10 @@ footer a:hover {
         border-right: 3px solid white;
     }
 
+    .combined-section h1 {
+        font-size: 4rem;
+    }
+
     .features-grid {
         gap: 15px;
     }

@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="adjusting feature tile sizes on mobile devices">
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="moving the time.money. mazimized to one section of the page and animating mazimized">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +88,7 @@
       <workItem from="1737438943249" duration="14376000" />
       <workItem from="1737657899057" duration="1846000" />
       <workItem from="1737827477784" duration="915000" />
-      <workItem from="1738027472781" duration="1951000" />
+      <workItem from="1738027472781" duration="2213000" />
     </task>
     <task id="LOCAL-00001" summary="second commit + clean up">
       <option name="closed" value="true" />
@@ -212,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737668982796</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="moving the time.money. mazimized to one section of the page and animating mazimized">
+      <option name="closed" value="true" />
+      <created>1738082838091</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1738082838091</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +250,7 @@
     <MESSAGE value="fixing progress bar css and footer alignment" />
     <MESSAGE value="moving title section to the top. removing money section and into time section" />
     <MESSAGE value="adjusting feature tile sizes on mobile devices" />
-    <option name="LAST_COMMIT_MESSAGE" value="adjusting feature tile sizes on mobile devices" />
+    <MESSAGE value="moving the time.money. mazimized to one section of the page and animating mazimized" />
+    <option name="LAST_COMMIT_MESSAGE" value="moving the time.money. mazimized to one section of the page and animating mazimized" />
   </component>
 </project>
