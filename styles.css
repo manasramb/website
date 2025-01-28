@@ -1,5 +1,6 @@
 /* General Reset */
 @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
 
 * {
     margin: 0;
@@ -167,7 +168,6 @@ body {
 }
 
 /* General Reset */
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
 
 * {
     margin: 0;
@@ -252,17 +252,52 @@ body {
     font-weight: bold;
 }
 
-.center-section.time {
-    background: #eaf4fc;
+/* Combined Section Styling */
+.combined-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: black;
+    font-family: 'Stick No Bills', sans-serif;
+    color: black;
+    padding: 20px;
 }
 
-.center-section.money {
-    background: #fef9e7;
+.combined-section h1 {
+    font-size: 7rem;
+    font-weight: bold;
+    line-height: 1.2;
+    color: goldenrod;
+    margin: 0; /* Remove default margin */
 }
 
-.center-section.maximized {
-    background: #e8f5e9;
+.combined-section .highlight {
+    color: whitesmoke; /* Accent color for "Time" and "Money" */
+    font-style: italic;
 }
+
+.bouncy {
+    color: #154360; /* Darker color for contrast */
+    animation: bounce 3.5s infinite; /* Add bounce animation */
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-40px); /* Bounce up */
+    }
+    60% {
+        transform: translateY(-15px); /* Slight bounce */
+    }
+}
+
+
 
 /* Final Section */
 .final-section {
@@ -324,7 +359,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Stack content vertically */
-    background: goldenrod;
+    background: black;
     padding: 60px 20px;
     text-align: center;
     min-height: 100vh; /* Ensure full height for all screens */
@@ -332,7 +367,7 @@ body {
 
 .features h2 {
     font-size: 5.5rem;
-    color: black;
+    color: goldenrod;
     margin-bottom: 40px;
 }
 

@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < 25; i++) {
         const car = document.createElement('div');
-        car.style.width = '50px';
-        car.style.height = '25px';
+        car.style.width = '30px';
+        car.style.height = '10px';
         car.style.background = i % 2 === 0 ? 'red' : 'blue';
         car.style.position = 'absolute';
         car.style.bottom = '0';
