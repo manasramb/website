@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="adding animations">
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="adding animations 2.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -234,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760968459996</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="adding animations 2.0">
+      <option name="closed" value="true" />
+      <created>1760969365796</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1760969365797</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +277,7 @@
     <MESSAGE value="moving the time.money. mazimized to one section of the page and animating mazimized" />
     <MESSAGE value="website facelift 2.0" />
     <MESSAGE value="adding animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding animations" />
+    <MESSAGE value="adding animations 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding animations 2.0" />
   </component>
 </project>
