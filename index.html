@@ -15,7 +15,6 @@
             color: #FFF8E1;
             overflow: hidden; /* CRITICAL: Disables native scrollbar */
             height: 100vh;
-            /* REPLACED animated gradient with a solid, deep near-black */
             background-color: #111;
         }
 
@@ -33,7 +32,7 @@
         .section {
             height: 100vh;
             width: 100vw;
-            position: absolute; /* Changed from relative */
+            position: absolute;
             top: 0;
             left: 0;
             display: flex;
@@ -42,34 +41,138 @@
             align-items: center;
             padding: 4rem 1rem;
             text-align: center;
-
-            /* Transition properties for smooth fades */
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none; /* Inactive sections are not interactive */
+            pointer-events: none;
             visibility: hidden;
         }
 
         .section.active {
             opacity: 1;
             transform: translateY(0);
-            pointer-events: auto; /* Active section is interactive */
+            pointer-events: auto;
             visibility: visible;
-            z-index: 10; /* Bring active section to the front */
+            z-index: 10;
         }
 
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s; /* Added delay */
+            transition: opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s;
         }
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- Grid, Noise, and other styles remain the same --- */
+        /* --- SUBTLE ANIMATIONS --- */
+
+        /* 1. Hero Sonar Ping - ADJUSTED FOR VISIBILITY */
+        @keyframes sonar {
+            0% { transform: scale(0.5); opacity: 0.7; }
+            70% { opacity: 0.3; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .sonar-ping {
+            position: absolute;
+            /* --- CHANGE: Made the border thicker, less transparent, and added a glow --- */
+            border: 4px solid rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 25px rgba(255, 215, 0, 0.2) inset;
+            border-radius: 50%;
+            width: 800px;
+            height: 800px;
+            animation: sonar 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            z-index: 0;
+            opacity: 0;
+        }
+        #hero.active .sonar-ping { animation-delay: 1.2s; }
+
+
+        /* 2. Problem Text Glitch */
+        @keyframes glitch {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            5% { clip-path: inset(0.8em 0 0.2em 0); }
+            10% { clip-path: inset(0.2em 0 0.8em 0); }
+            15% { clip-path: inset(0.5em 0 0.5em 0); }
+            20% { clip-path: inset(0.1em 0 0.9em 0); }
+        }
+        .glitch { position: relative; }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            overflow: hidden;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #D42E43;
+            animation: glitch 3s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 #FFD700;
+            animation: glitch 2s infinite linear alternate;
+        }
+        #problem.active .glitch::before, #problem.active .glitch::after {
+             animation-delay: 1s;
+        }
+
+
+        /* 4. Agent Typewriter */
+        @keyframes blink { 50% { opacity: 0; } }
+        .typewriter::after {
+            content: '_';
+            display: inline-block;
+            animation: blink 0.7s infinite;
+            color: #FFD700;
+        }
+
+        /* 5. Mission Warm Glow */
+        @keyframes warm-glow {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+        .warm-glow {
+            position: absolute;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.5) 10%, rgba(212, 46, 67, 0) 70%);
+            border-radius: 70%;
+            z-index: 0;
+            filter: blur(50px);
+            opacity: 0;
+            animation: warm-glow 10s ease-in-out infinite;
+            transition: opacity 2s ease;
+        }
+        #mission.active .warm-glow { opacity: 0.1; }
+
+
+        /* 6. Button Shimmer */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(100deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 80%);
+            animation: shimmer 3s infinite;
+            animation-delay: 2s;
+        }
+
+
         .grid-background {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -112,6 +215,7 @@
     <main id="scroll-container">
     <!-- SECTION 1: THE HOOK / HERO -->
     <div id="hero" class="section active">
+        <div class="sonar-ping"></div>
         <div class="grid-background" style="background-size: 75px 75px; animation: pan-grid 45s linear infinite;"></div>
         <div class="text-center z-10 p-4">
             <h1 class="fade-in text-6xl md:text-8xl font-black tracking-tighter uppercase text-white">
@@ -128,7 +232,7 @@
     <div id="problem" class="section">
         <div class="noise-overlay"></div>
         <div class="z-10 text-center max-w-4xl mx-auto fade-in">
-             <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-white">The Illusion of <span class="text-[#D42E43]">Gross Pay</span>.</h2>
+             <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-white glitch" data-text="The Illusion of Gross Pay.">The Illusion of <span class="text-[#D42E43]">Gross Pay</span>.</h2>
              <p class="mt-6 text-lg text-gray-400">
                 Platform heatmaps are a mirage. Gross pay is a vanity metric. Your true costs—fuel, tires, depreciation, the brutal <span class="text-white font-semibold">"Arizona Factor"</span>—are the invisible currents pulling you under. You're reacting, not planning.
              </p>
@@ -193,11 +297,10 @@
                 GigCopilot is more than a map. It's your personal AI Strategist. Give it your goal—maximize rate or hit a target—and receive an optimal path for your shift, a plan aligned with true effective earnings.
             </p>
 
-            <!-- Simplified UI Mockup -->
             <div class="mt-12 bg-white/5 border border-white/10 rounded-xl p-8 shadow-2xl shadow-black/50">
                 <div class="text-left font-mono text-sm">
-                    <p class="text-gray-400">> AI STRATEGIST: GENERATING OPTIMAL PATHS...</p>
-                    <div class="mt-6">
+                    <p id="typewriter-text" class="text-gray-400"></p>
+                    <div id="agent-plan" class="mt-6" style="display: none;">
                         <p class="text-white font-bold text-lg">PATH A: The Sunset Prosperity Plan</p>
                         <div class="mt-2 pl-4 border-l-2 border-[#FFD700]">
                             <p class="text-white"><strong class="text-[#FFD700]">LEG 1:</strong> 5:00PM - 7:00PM @ Downtown Phoenix</p>
@@ -218,7 +321,8 @@
 
     <!-- SECTION 5: MISSION -->
     <div id="mission" class="section">
-        <div class="fade-in max-w-3xl">
+        <div class="warm-glow"></div>
+        <div class="fade-in max-w-3xl z-10">
             <h2 class="text-5xl font-bold text-white">In Service of the Driver.</h2>
             <p class="mt-6 text-xl text-gray-300">
                 We're not a platform. We are your advocate. We built GigCopilot because we believe the person doing the work deserves the tools for prosperity. Your time is finite. Let's make it profitable.
@@ -235,7 +339,7 @@
             </p>
             <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <input type="email" placeholder="your.email@provider.com" class="w-full sm:w-auto flex-grow bg-white/10 border border-white/20 rounded-full px-6 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-[#FFD700] focus:outline-none transition duration-300">
-                <button class="w-full sm:w-auto bg-[#D42E43] text-white font-bold py-3 px-8 rounded-full hover:bg-red-500 transition duration-300">Unlock Prosperity</button>
+                <button class="w-full sm:w-auto bg-[#D42E43] text-white font-bold py-3 px-8 rounded-full hover:bg-red-500 transition duration-300 shimmer-btn">Unlock Prosperity</button>
             </div>
         </div>
          <!-- FOOTER -->
@@ -257,9 +361,43 @@
         let currentSectionIndex = 0;
         let isScrolling = false;
 
-        // Set initial state
+        // --- Typewriter Setup ---
+        const typewriterElement = document.getElementById('typewriter-text');
+        const agentPlanElement = document.getElementById('agent-plan');
+        const typewriterText = '> AI STRATEGIST: GENERATING OPTIMAL PATHS...';
+        let typewriterTimeout;
+
+        function runTypewriter() {
+            if (typewriterElement) {
+                typewriterElement.innerHTML = '';
+                typewriterElement.classList.add('typewriter');
+                let i = 0;
+                function type() {
+                    if (i < typewriterText.length) {
+                        typewriterElement.innerHTML += typewriterText.charAt(i);
+                        i++;
+                        typewriterTimeout = setTimeout(type, 50);
+                    } else {
+                        typewriterElement.classList.remove('typewriter'); // Stop blinking cursor
+                        if (agentPlanElement) {
+                            setTimeout(() => {
+                                agentPlanElement.style.display = 'block';
+                            }, 300);
+                        }
+                    }
+                }
+                type();
+            }
+        }
+
+        function resetTypewriter() {
+            clearTimeout(typewriterTimeout);
+            if(typewriterElement) typewriterElement.innerHTML = '';
+            if(agentPlanElement) agentPlanElement.style.display = 'none';
+        }
+
+        // --- Initial State ---
         sections[0].classList.add('active');
-        // Trigger animations for the first section immediately
         const firstSectionFades = sections[0].querySelectorAll('.fade-in');
         firstSectionFades.forEach(el => el.classList.add('visible'));
         const firstGrid = sections[0].querySelector('.grid-background');
@@ -275,21 +413,19 @@
             const nextSection = sections[index];
 
             if (currentSection) {
-                 // Remove visible class from elements in the outgoing section
                 currentSection.querySelectorAll('.fade-in, .equation-item, .x-factor-icon').forEach(el => el.classList.remove('visible'));
                 currentSection.classList.remove('active');
-                 const noiseOut = currentSection.querySelector('.noise-overlay');
-                 if (noiseOut) noiseOut.style.opacity = '0';
+                const noiseOut = currentSection.querySelector('.noise-overlay');
+                if (noiseOut) noiseOut.style.opacity = '0';
+                if (currentSection.id === 'agent') resetTypewriter();
             }
 
             if (nextSection) {
                 nextSection.classList.add('active');
 
-                // Trigger animations for the incoming section's elements
                 const fadeInElements = nextSection.querySelectorAll('.fade-in');
                 fadeInElements.forEach(el => el.classList.add('visible'));
 
-                // Special animation triggers for the solution section
                 if (nextSection.id === 'solution') {
                     const equationItems = nextSection.querySelectorAll('.equation-item');
                     equationItems.forEach((item, idx) => {
@@ -301,10 +437,13 @@
                     });
                 }
 
-                // Special animation triggers for the noise overlay
                 if (nextSection.id === 'problem') {
                     const noiseIn = nextSection.querySelector('.noise-overlay');
                     if (noiseIn) setTimeout(() => noiseIn.style.opacity = '0.08', 500);
+                }
+
+                if (nextSection.id === 'agent') {
+                    setTimeout(runTypewriter, 800); // Start typewriter after section fades in
                 }
             }
 
@@ -326,12 +465,10 @@
             }, 1500); // Cooldown period to match animation
         }
 
-        // Mouse wheel event
         window.addEventListener('wheel', (event) => {
             handleScroll(event.deltaY);
         });
 
-        // Keyboard navigation
         window.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowDown') {
                 handleScroll(1);
@@ -340,7 +477,6 @@
             }
         });
 
-        // Touch navigation for mobile
         let touchstartY = 0;
         window.addEventListener('touchstart', (event) => {
             touchstartY = event.touches[0].clientY;
@@ -349,13 +485,12 @@
         window.addEventListener('touchend', (event) => {
             const touchendY = event.changedTouches[0].clientY;
             const deltaY = touchstartY - touchendY;
-            if (Math.abs(deltaY) > 50) { // Threshold for swipe
+            if (Math.abs(deltaY) > 50) {
                 handleScroll(deltaY);
             }
         });
 
 
-        // Navigation links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();

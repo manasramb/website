@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="adjusrting time money for smaller screens">
-      <change beforePath="$PROJECT_DIR$/.idea/gigcopilot-website.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gigcopilot-website.iml" afterDir="false" />
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="website facelift 2.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738082838091</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="website facelift 2.0">
+      <option name="closed" value="true" />
+      <created>1760967316195</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1760967316195</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +259,7 @@
     <MESSAGE value="moving title section to the top. removing money section and into time section" />
     <MESSAGE value="adjusting feature tile sizes on mobile devices" />
     <MESSAGE value="moving the time.money. mazimized to one section of the page and animating mazimized" />
-    <option name="LAST_COMMIT_MESSAGE" value="moving the time.money. mazimized to one section of the page and animating mazimized" />
+    <MESSAGE value="website facelift 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="website facelift 2.0" />
   </component>
 </project>
