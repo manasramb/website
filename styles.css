@@ -1,6 +1,5 @@
-/* General Reset */
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+/* --- Minimalist & Elegant Reset & Base --- */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=Inter:wght@300;400;600;700&display=swap');
 
 * {
     margin: 0;
@@ -9,701 +8,323 @@
 }
 
 body {
-    font-family: 'Pirata One', cursive;
-    background: #f5f5f5;
-    color: #2a2a2a;
+    font-family: 'Inter', sans-serif; /* Clean sans-serif for body */
+    background-color: #ffffff; /* Crisp white background */
+    color: #1d1d1f; /* Near-black for primary text (Apple's shade) */
+    line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Landing Section */
-.landing {
-    height: 100vh;
+/* --- Reusable Container --- */
+.container {
+    max-width: 1080px; /* Limit content width for better readability */
+    margin: 0 auto; /* Center the container */
+    padding: 0 2rem;
+}
+
+/* --- Navigation --- */
+nav {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    padding: 1rem 0;
+    color: #f5f5f7; /* Light gray text */
+    position: sticky; /* Keep nav visible */
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul {
+    list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center nav items */
     align-items: center;
-    background: linear-gradient(180deg, black, black);
-    position: relative;
-    overflow: hidden;
-}
-
-.rotating-logo-container {
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-.rotating-logo {
-    width: 30vw;
-    height: 40vw;
-    max-width: 700px;
-    max-height: 900px;
-    min-width: 200px;
-    min-height: 300px;
-    animation: rotate 10s linear infinite;
-}
-
-.rotating-logo-container h1 {
-    font-size: 8rem;
-    color: goldenrod;
-    margin-top: 20px;
-    font-weight: normal;
-    letter-spacing: 15px;
-    text-align: center;
-}
-
-/* Keyframes for Logo Rotation */
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Centered Sections Styling */
-.center-sections {
-    position: relative;
-}
-
-.center-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: 'Stick No Bills', sans-serif;
-    background: white;
-    color: black;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-in-out;
-}
-
-.center-section h1 {
-    font-size: 6rem;
-    font-weight: bold;
-}
-
-.center-section.time {
-    background: #eaf4fc;
-}
-
-.center-section.money {
-    background: #fef9e7;
-}
-
-.center-section.maximized {
-    background: #e8f5e9;
-}
-
-/* Final Section */
-.final-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    color: white;
-    text-align: center;
-    font-family: 'Pirata One', cursive;
-}
-
-.final-section .gigcopilot {
-    font-size: 9rem;
-    animation: fadeIn 1s ease-in-out forwards;
-}
-
-.final-section .tagline {
-    font-size: 5rem;
-    margin-top: 20px;
-    animation: typewriter 3s steps(20) 1.5s forwards;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid white;
-}
-
-/* Build Progress Section */
-.progress-section {
-    background: lightyellow;
-    padding: 60px 20px;
-    text-align: center;
-    min-height: 30vh; /* Ensure visibility */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.progress-section h2 {
-    font-size: 2.5rem;
-    color: #154360;
-    margin-bottom: 20px;
-}
-
-.progress-container {
-    width: 80%;
-    max-width: 800px;
-    background: #d9d9d9;
-    border-radius: 30px;
+    gap: 2rem; /* Space between items */
+    max-width: 1080px;
     margin: 0 auto;
-    overflow: hidden;
-    height: 30px;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 0 2rem;
 }
 
-.progress-bar {
-    height: 100%;
-    width: 30%; /* Adjust for current progress */
-    background: linear-gradient(90deg, #4f3ed5, #5a95ff);
-    transition: width 2s ease-in-out; /* Smooth transition */
+nav a {
+    color: #f5f5f7;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
 }
 
-#progress-text {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    color: #2a2a2a;
+nav a:hover {
+    color: goldenrod; /* Accent color on hover */
 }
 
-/* General Reset */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+nav .brand-name {
+    font-family: 'Pirata One', cursive; /* Keep brand font */
+    font-size: 1.8rem; /* Slightly larger */
+    color: goldenrod; /* Use accent for brand */
+    margin-right: auto; /* Push other items to the right */
 }
 
-body {
-    font-family: 'Pirata One', cursive;
-    background: #f5f5f5;
-    color: #2a2a2a;
-    overflow-x: hidden;
-}
-
-/* Landing Section */
-.landing {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(180deg, black, black);
-    position: relative;
-    overflow: hidden;
-}
-
-.rotating-logo-container {
+/* --- General Section Styling --- */
+section {
+    padding: 6rem 0; /* Generous vertical padding */
     text-align: center;
-    position: relative;
-    z-index: 10;
+    border-bottom: 1px solid #e5e5e5; /* Subtle separator */
 }
 
-.rotating-logo {
-    width: 30vw;
-    height: 40vw;
-    max-width: 700px;
-    max-height: 900px;
-    min-width: 200px;
-    min-height: 300px;
-    animation: rotate 10s linear infinite;
+section:last-of-type {
+    border-bottom: none;
 }
 
-.rotating-logo-container h1 {
-    font-size: 8rem;
-    color: goldenrod;
-    margin-top: 20px;
-    font-weight: normal;
-    letter-spacing: 15px;
-    text-align: center;
-}
-
-/* Keyframes for Logo Rotation */
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Centered Sections Styling */
-.center-sections {
-    position: relative;
-}
-
-.center-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: 'Stick No Bills', sans-serif;
-    background: white;
-    color: black;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-in-out;
-}
-
-.center-section h1 {
-    font-size: 6rem;
-    font-weight: bold;
-}
-
-/* Combined Section Styling */
-.combined-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: black;
-    font-family: 'Stick No Bills', sans-serif;
-    color: black;
-    padding: 20px;
-}
-
-.combined-section h1 {
-    font-size: 7rem;
-    font-weight: bold;
+h1 {
+    font-size: 3.5rem; /* Adjust sizes for elegance */
+    font-weight: 700;
+    margin-bottom: 1rem;
     line-height: 1.2;
-    color: goldenrod;
-    margin: 0; /* Remove default margin */
+    color: #1d1d1f;
 }
 
-.combined-section .highlight {
-    color: whitesmoke; /* Accent color for "Time" and "Money" */
-    font-style: italic;
+h2 {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: #1d1d1f;
 }
 
-.bouncy {
-    color: #154360; /* Darker color for contrast */
-    animation: bounce 3.5s infinite; /* Add bounce animation */
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #1d1d1f;
 }
 
-/* Bounce Animation */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-40px); /* Bounce up */
-    }
-    60% {
-        transform: translateY(-15px); /* Slight bounce */
-    }
+p {
+    font-size: 1.1rem;
+    color: #515154; /* Slightly lighter gray for paragraphs */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-
-
-/* Final Section */
-.final-section {
-    height: 100vh;
+/* --- Hero Section (#hero) --- */
+#hero {
+    background-color: #f5f5f7; /* Very light gray, almost white */
+    min-height: 90vh; /* Slightly less than full viewport */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: black;
-    color: white;
-    text-align: center;
-    font-family: 'Pirata One', cursive;
+    padding-top: 5rem; /* Adjust padding */
+    padding-bottom: 5rem;
+    border-bottom: none; /* No border after hero */
 }
 
-.final-section .gigcopilot {
-    font-size: 9rem;
-    animation: fadeIn 1s ease-in-out forwards;
+#hero h1 {
+    font-family: 'Pirata One', cursive; /* Use brand font for main headline */
+    font-size: 4.5rem; /* Larger hero headline */
+    color: #1d1d1f;
+    letter-spacing: 2px;
 }
 
-.final-section .tagline {
-    font-size: 5rem;
-    margin-top: 20px;
-    animation: typewriter 2s steps(15) 0.5s forwards;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid white;
+#hero p {
+    font-size: 1.3rem; /* Larger intro paragraph */
+    color: #515154;
+    margin-top: 1rem;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+#hero img {
+    max-width: 70%; /* Control image size */
+    height: auto;
+    margin-top: 3rem;
+    border-radius: 12px; /* Slightly more rounded */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer shadow */
 }
 
-@keyframes typewriter {
-    from {
-        width: 40%;
-    }
-    to {
-        width: 60%;
-    }
+.cta-button {
+    background-color: goldenrod; /* Accent color */
+    color: #1d1d1f; /* Dark text on accent */
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    border-radius: 20px; /* Pill shape */
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 2.5rem;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Scroll Animations */
-.center-section.active {
-    opacity: 1;
-    transform: translateY(0);
+.cta-button:hover {
+    background-color: #e4c160; /* Slightly lighter gold on hover */
+    transform: translateY(-2px); /* Subtle lift */
 }
 
-/* Features Section */
-.features {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Stack content vertically */
-    background: black;
-    padding: 60px 20px;
-    text-align: center;
-    min-height: 100vh; /* Ensure full height for all screens */
+/* --- Mission Section (#mission) --- */
+#mission {
+    background-color: #ffffff; /* White */
 }
+#mission img {
+     max-width: 150px; /* Smaller image */
+     margin-top: 2rem;
+     opacity: 0.8;
+ }
 
-.features h2 {
-    font-size: 5.5rem;
-    color: goldenrod;
-    margin-bottom: 40px;
+/* --- Features Section (#features) --- */
+#features {
+    background-color: #f5f5f7; /* Light gray */
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px;
+    /* Use 3 columns on desktop, wrap gracefully */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: left;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.feature-card {
-    background-size: cover; /* Ensure the background image covers the card */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent tiling */
-    height: 300px; /* Adjusted for responsiveness */
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 20px;
-    opacity: 1; /* Ensure the card is visible by default */
-    transition: opacity 0.3s ease, transform 0.3s ease;
+.feature-card-new {
+    background-color: #ffffff; /* White cards */
+    padding: 2rem;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.feature-card:hover {
-    transform: scale(1.05); /* Slight zoom effect */
+.feature-card-new:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-.feature-card:nth-child(1) {
-    background-image: url('resources/hotspots-image.png');
+.feature-card-new img { /* Placeholder for actual icons */
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+    background-color: goldenrod; /* Example: use accent color for icon background */
+    padding: 8px;
+    border-radius: 8px;
+    display: block; /* Center icon */
+    margin-left: 0; /* Align left */
 }
 
-.feature-card:nth-child(2) {
-    background-image: url('resources/digital-handshake.png');
+.feature-card-new h3 {
+    margin-bottom: 0.5rem;
 }
 
-.feature-card:nth-child(3) {
-    background-image: url('resources/adv-analytics.webp');
-    color: black;
+.feature-card-new p {
+    font-size: 0.95rem; /* Slightly smaller text in cards */
+    color: #515154;
+    max-width: none; /* Allow text to fill card */
+    margin-left: 0;
+    margin-right: 0;
 }
 
-/* Transition Effects */
-.logo-expand {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url('/resources/symbol3.0.jpg') no-repeat center center/contain;
-    z-index: 100;
-    animation: expandLogo 1.5s ease-in-out forwards;
+
+/* --- How It Works / Trust Section (#how-it-works) --- */
+#how-it-works {
+    background-color: #ffffff; /* White */
 }
 
-@keyframes expandLogo {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(20);
-        opacity: 0;
-    }
+/* --- Sign Up Section (#signup) --- */
+#signup {
+    background-color: #f5f5f7; /* Light gray */
 }
 
-/* Build Progress Section */
-.progress-section {
-    background: lightyellow;
-    padding: 60px 20px;
-    text-align: center;
-    min-height: 30vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#signup input[type="email"] {
+    padding: 0.9rem 1.2rem;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Pill shape */
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
 }
 
-.progress-section h2 {
-    font-size: 2.5rem;
-    color: #154360;
-    margin-bottom: 20px;
+#signup button.cta-button {
+    padding: 0.9rem 2rem;
+    margin-top: 0; /* Align with input */
+    border: none;
+    cursor: pointer;
 }
 
-.progress-container {
-    width: 80%;
-    max-width: 800px;
-    background: #d9d9d9;
-    border-radius: 30px;
-    margin: 0 auto;
-    overflow: hidden;
-    height: 30px;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
 
-.progress-bar {
-    height: 100%;
-    width: 30%; /* Adjust for current progress */
-    background: linear-gradient(90deg, #4f3ed5, #5a95ff);
-    transition: width 2s ease-in-out; /* Smooth transition */
-}
-
-#progress-text {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    color: #2a2a2a;
-}
-
-/* Footer Section */
+/* --- Footer --- */
 footer {
-    background: lightyellow;
-    color: darkslategray;
-    padding: 20px;
+    background: #ffffff; /* White footer */
+    padding: 3rem 0;
     text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    color: #86868b; /* Lighter gray for footer text */
+    font-size: 0.85rem;
+    border-top: 1px solid #e5e5e5;
 }
 
 footer p {
-    margin: 5px 0; /* Adds space between lines */
+    margin: 0.5rem 0;
+    color: #86868b; /* Ensure paragraphs also use the lighter gray */
+    font-size: 0.85rem;
 }
 
 footer a {
-    color: #76d7c4;
+    color: #515154; /* Medium gray for links */
     text-decoration: none;
-    font-weight: bold;
     transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: #f0d878;
+    color: goldenrod; /* Accent on hover */
 }
 
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes typewriter {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-/* Scroll Animations */
-.center-section.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Features Section */
-.features {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Stack content vertically */
-    background: goldenrod;
-    padding: 60px 20px;
-    text-align: center;
-    min-height: 100vh; /* Ensure full height for all screens */
-}
-
-.features h2 {
-    font-size: 5.5rem;
-    color: black;
-    margin-bottom: 40px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px;
-}
-
-.feature-card {
-    background-size: cover; /* Ensure the background image covers the card */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent tiling */
-    height: 300px; /* Adjusted for responsiveness */
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 20px;
-    opacity: 1; /* Ensure the card is visible by default */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: scale(2.05); /* Slight zoom effect */
-}
-
-.feature-card:nth-child(1) {
-    background-image: url('resources/hotspots-image.png');
-}
-
-.feature-card:nth-child(2) {
-    background-image: url('resources/digital-handshake.png');
-}
-
-.feature-card:nth-child(3) {
-    background-image: url('resources/adv-analytics.webp');
-    color: black;
-}
-
-/* Transition Effects */
+/* --- Removing old/unused styles --- */
+.landing, .rotating-logo-container, .rotating-logo,
+.center-sections, .center-section, .combined-section, .final-section,
+.progress-section, .progress-container, .progress-bar,
+.features h2, .features-grid .feature-card, /* Remove old feature card styles */
 .logo-expand {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url('/resources/symbol3.0.jpg') no-repeat center center/contain;
-    z-index: 100;
-    animation: expandLogo 1.5s ease-in-out forwards;
+    display: none; /* Hide elements not used in the new design */
 }
 
-@keyframes expandLogo {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(20);
-        opacity: 0;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .rotating-logo {
-        width: 40vw;
-        height: 50vw;
-    }
-
-    .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(750px, 1fr));
-    }
-
-    .feature-card {
-        height: 500px;
-        font-size: 2.2rem;
-    }
-
-    .progress-section h2 {
-        font-size: 2rem;
-    }
-}
-
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    .rotating-logo {
-        width: 60vw;
-        height: 70vw;
-    }
+    h1 { font-size: 2.8rem; }
+    #hero h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.2rem; }
+    p, #hero p { font-size: 1rem; }
+
+    nav ul { gap: 1rem; justify-content: space-between; }
+    nav .brand-name { margin-right: 0; }
+    /* Consider a mobile menu toggle for very small screens */
 
     .features-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack features on smaller screens */
+        gap: 1.5rem;
     }
 
-    .feature-card {
-        height: 400px;
-        font-size: 1.2rem;
+    #signup input[type="email"] {
+        width: calc(100% - 100px); /* Adjust input width */
+        margin-right: 0;
+        margin-bottom: 1rem;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
-
-    footer {
-        padding: 10px;
-        font-size: 0.8rem;
+    #signup button.cta-button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
 @media (max-width: 480px) {
-    .rotating-logo {
-        width: 90vw;
-        height: 115vw;
-    }
-
-    .center-section h1 {
-        font-size: 4rem;
-        font-weight: bold;
-    }
-
-    .final-section .gigcopilot {
-        font-size: 4rem;
-        animation: fadeIn 1s ease-in-out forwards;
-    }
-
-    .final-section .tagline {
-        font-size: 2rem;
-        margin-top: 20px;
-        animation: typewriter 3s steps(20) 1.5s forwards;
-        overflow: hidden;
-        white-space: nowrap;
-        border-right: 3px solid white;
-    }
-
-    .combined-section h1 {
-        font-size: 4rem;
-    }
-
-    .features-grid {
-        gap: 15px;
-    }
-
-    .feature-card {
-        height: 400px;
-        font-size: 2rem;
-    }
-
-    footer {
-        padding: 8px;
-        font-size: 0.7rem;
-    }
+    h1 { font-size: 2.2rem; }
+    #hero h1 { font-size: 2.8rem; }
+    h2 { font-size: 1.8rem; }
+    p, #hero p { font-size: 0.95rem; }
+    .container, nav ul { padding: 0 1rem; }
+    section { padding: 4rem 0; }
+    nav ul { gap: 0.5rem; }
+    nav a { font-size: 0.8rem; }
+    nav .brand-name { font-size: 1.5rem; }
 }

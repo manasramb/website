@@ -1,82 +1,376 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GigCopilot</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>GigCopilot - The Driver's Edge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- CLASSY APPLE/FERRARI-STYLE BACKGROUND --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #FFF8E1;
+            overflow: hidden; /* CRITICAL: Disables native scrollbar */
+            height: 100vh;
+            /* REPLACED animated gradient with a solid, deep near-black */
+            background-color: #111;
+        }
+
+        .scroll-container {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .accent-glow-gold {
+            text-shadow: 0 0 8px #FFD700, 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* SECTION STYLING FOR SCROLL-SNAPPING */
+        .section {
+            height: 100vh;
+            width: 100vw;
+            position: absolute; /* Changed from relative */
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 1rem;
+            text-align: center;
+
+            /* Transition properties for smooth fades */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none; /* Inactive sections are not interactive */
+            visibility: hidden;
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto; /* Active section is interactive */
+            visibility: visible;
+            z-index: 10; /* Bring active section to the front */
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s; /* Added delay */
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Grid, Noise, and other styles remain the same --- */
+        .grid-background {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px; animation: pan-grid 60s linear infinite; z-index: -1; opacity: 0; transition: opacity 1.5s ease;
+        }
+        @keyframes pan-grid { 0% { background-position: 0 0; } 100% { background-position: 500px 500px; } }
+        .noise-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: 200px; opacity: 0; z-index: 1; transition: opacity 1.5s ease-in-out; pointer-events: none;
+        }
+        .equation-item { opacity: 0; transform: scale(0.9); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .equation-item.visible { opacity: 1; transform: scale(1); }
+        .x-factor-icon { opacity: 0; transition: opacity 0.5s ease; filter: grayscale(1); }
+        .x-factor-icon.visible { opacity: 1; filter: grayscale(0); }
+    </style>
 </head>
-<body>
-<!-- Landing Section -->
-<section class="landing">
-    <div class="rotating-logo-container" id="logo-container">
-        <img src="./resources/symbol3.0.jpg" alt="GigCopilot Logo" class="rotating-logo" id="logo">
-    </div>
-</section>
+<body class="antialiased">
 
-<!-- Centered Sections -->
-<div class="center-sections">
-    <section class="final-section">
-        <h1 class="gigcopilot">GigCopilot</h1>
-        <p class="tagline">Your gig work AI assistant</p>
-    </section>
-    <!-- Combined Section -->
-    <section class="center-sections">
-        <div class="combined-section">
-            <h1>
-                <span class="highlight">Time.</span>
-                <span class="highlight">Money.</span>
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#111]/50 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-black text-2xl text-[#FFD700] accent-glow-gold">GIGCOPILOT</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#problem" data-index="1" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">The Noise</a>
+                        <a href="#solution" data-index="2" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">The Signal</a>
+                        <a href="#agent" data-index="3" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">The Strategist</a>
+                        <a href="#mission" data-index="4" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Our Mission</a>
+                    </div>
+                </div>
+                 <div class="flex items-center">
+                    <a href="#signup" data-index="5" class="nav-link bg-[#FFD700] text-black font-bold py-2 px-5 rounded-full text-sm hover:bg-white transition duration-300">CLAIM YOUR ADVANTAGE</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="scroll-container">
+    <!-- SECTION 1: THE HOOK / HERO -->
+    <div id="hero" class="section active">
+        <div class="grid-background" style="background-size: 75px 75px; animation: pan-grid 45s linear infinite;"></div>
+        <div class="text-center z-10 p-4">
+            <h1 class="fade-in text-6xl md:text-8xl font-black tracking-tighter uppercase text-white">
+                TRANSCEND THE <span class="text-[#FFD700] accent-glow-gold">NOISE</span>
             </h1>
-            <h1 class="bouncy">Maximized!</h1>
-        </div>
-    </section>
-
-</div>
-
-<!-- Features Section -->
-<section class="features">
-    <h2>Features</h2>
-    <div class="features-grid">
-        <div class="feature-card" data-description="Real-time recommendations for high-demand areas using AI and historical data.">
-            <h3>Hotspot Identification</h3>
-        </div>
-        <div class="feature-card" data-description="Seamlessly sync your earnings, rides, and mileage across all gig platforms.">
-            <h3>Platform Integration</h3>
-        </div>
-        <div class="feature-card" data-description="Track performance, earnings, and expenses with detailed insights and reports.">
-            <h3>Advanced Analytics</h3>
+            <p class="fade-in mt-4 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto" style="transition-delay: 200ms;">
+                While others chase fleeting surges, the professional driver moves with purpose. GigCopilot is your definitive signal for net profitability.
+            </p>
+            <p class="fade-in mt-2 text-sm text-[#FFD700]" style="transition-delay: 400ms;">For the Elite Phoenix Rideshare Professional</p>
         </div>
     </div>
-</section>
 
-<section class="progress-section">
-    <h2>Build Progress</h2>
-    <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
+    <!-- SECTION 2: THE PROBLEM / "THE NOISE" -->
+    <div id="problem" class="section">
+        <div class="noise-overlay"></div>
+        <div class="z-10 text-center max-w-4xl mx-auto fade-in">
+             <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-white">The Illusion of <span class="text-[#D42E43]">Gross Pay</span>.</h2>
+             <p class="mt-6 text-lg text-gray-400">
+                Platform heatmaps are a mirage. Gross pay is a vanity metric. Your true costs—fuel, tires, depreciation, the brutal <span class="text-white font-semibold">"Arizona Factor"</span>—are the invisible currents pulling you under. You're reacting, not planning.
+             </p>
+        </div>
     </div>
-    <p id="progress-text">Building... 0%</p>
-</section>
+
+    <!-- SECTION 3: THE SOLUTION / "THE CLARITY" -->
+    <div id="solution" class="section space-y-20">
+        <!-- Part 1: The Profit Equation -->
+        <div class="w-full max-w-5xl mx-auto text-center fade-in">
+            <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-white">Clarity from Chaos.</h2>
+            <p class="mt-6 text-lg text-gray-400">We calculate everything. So you can profit from anything.</p>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center text-lg font-semibold">
+                <div class="equation-item p-4 bg-white/5 rounded-lg border border-white/10">FARE + SURGE</div>
+                <div class="text-2xl text-[#D42E43] equation-item" style="transition-delay: 100ms;">-</div>
+                <div class="equation-item p-4 bg-white/5 rounded-lg border border-white/10">(GAS + TIRES + MAINT + DEPRECIATION)</div>
+                <div class="text-2xl text-[#FFD700] equation-item" style="transition-delay: 200ms;">=</div>
+                <div class="equation-item p-6 bg-[#FFD700]/10 rounded-lg border border-[#FFD700] text-[#FFD700] text-2xl" style="transition-delay: 300ms;">NET PROFIT</div>
+            </div>
+        </div>
+
+        <!-- Part 2: The Hidden Variables -->
+        <div class="w-full max-w-5xl mx-auto text-center fade-in" style="transition-delay: 300ms;">
+            <h3 class="text-3xl font-bold text-white">Our AI Perceives the Unseen.</h3>
+            <p class="mt-4 text-gray-400">Your advantage comes from data nobody else connects.</p>
+            <div class="mt-10 grid grid-cols-3 md:grid-cols-6 gap-8">
+                <!-- X-Factor Icons -->
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 100ms;">
+                    <svg class="h-12 w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    <span class="mt-2 text-sm font-medium">SATURATION</span>
+                </div>
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 200ms;">
+                    <svg class="h-12 w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                    <span class="mt-2 text-sm font-medium">WAYMO</span>
+                </div>
+                 <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 300ms;">
+                    <svg class="h-12 w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span class="mt-2 text-sm font-medium">EVENTS</span>
+                </div>
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 400ms;">
+                    <svg class="h-12 w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <span class="mt-2 text-sm font-medium">WEATHER</span>
+                </div>
+                 <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 500ms;">
+                    <svg class="h-12 w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <span class="mt-2 text-sm font-medium">SAFETY</span>
+                </div>
+                 <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 600ms;">
+                     <svg class="h-12 w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span class="mt-2 text-sm font-medium">TRAFFIC</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: THE AGENT -->
+    <div id="agent" class="section">
+        <div class="fade-in max-w-5xl text-center">
+            <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-white">From Data to <span class="text-[#FFD700] accent-glow-gold">Dharma</span>.</h2>
+            <p class="mt-6 text-lg text-gray-400 max-w-3xl mx-auto">
+                GigCopilot is more than a map. It's your personal AI Strategist. Give it your goal—maximize rate or hit a target—and receive an optimal path for your shift, a plan aligned with true effective earnings.
+            </p>
+
+            <!-- Simplified UI Mockup -->
+            <div class="mt-12 bg-white/5 border border-white/10 rounded-xl p-8 shadow-2xl shadow-black/50">
+                <div class="text-left font-mono text-sm">
+                    <p class="text-gray-400">> AI STRATEGIST: GENERATING OPTIMAL PATHS...</p>
+                    <div class="mt-6">
+                        <p class="text-white font-bold text-lg">PATH A: The Sunset Prosperity Plan</p>
+                        <div class="mt-2 pl-4 border-l-2 border-[#FFD700]">
+                            <p class="text-white"><strong class="text-[#FFD700]">LEG 1:</strong> 5:00PM - 7:00PM @ Downtown Phoenix</p>
+                            <p class="text-gray-400 ml-8">REASON: Capture peak evening commute + happy hour.</p>
+                            <p class="text-white mt-2"><strong class="text-[#FFD700]">LEG 2:</strong> 7:15PM - 9:15PM @ Footprint Center Area</p>
+                            <p class="text-gray-400 ml-8">REASON: Service pre-concert demand for the Suns game.</p>
+                        </div>
+                        <div class="mt-4 border-t border-white/10 pt-4">
+                             <p><span class="text-gray-400">TOTAL ESTIMATED EARNINGS:</span> <span class="text-white font-bold">$112.50</span></p>
+                             <p><span class="text-gray-400">TRUE EFFECTIVE RATE:</span> <span class="text-[#FFD700] font-bold text-lg">$25.00/hr</span></p>
+                             <p><span class="text-yellow-400">AWARENESS:</span> <span class="text-gray-300">Heavy traffic expected downtown until 6:30 PM.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: MISSION -->
+    <div id="mission" class="section">
+        <div class="fade-in max-w-3xl">
+            <h2 class="text-5xl font-bold text-white">In Service of the Driver.</h2>
+            <p class="mt-6 text-xl text-gray-300">
+                We're not a platform. We are your advocate. We built GigCopilot because we believe the person doing the work deserves the tools for prosperity. Your time is finite. Let's make it profitable.
+            </p>
+        </div>
+    </div>
+
+    <!-- SECTION 6: SIGN UP & FOOTER -->
+    <div id="signup" class="section">
+        <div class="fade-in max-w-2xl text-center">
+            <h2 class="text-5xl font-bold text-white">Claim Your Advantage.</h2>
+            <p class="mt-6 text-lg text-gray-400">
+                Join the waitlist for exclusive access to GigCopilot. Be the first to know, the first to prosper.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <input type="email" placeholder="your.email@provider.com" class="w-full sm:w-auto flex-grow bg-white/10 border border-white/20 rounded-full px-6 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-[#FFD700] focus:outline-none transition duration-300">
+                <button class="w-full sm:w-auto bg-[#D42E43] text-white font-bold py-3 px-8 rounded-full hover:bg-red-500 transition duration-300">Unlock Prosperity</button>
+            </div>
+        </div>
+         <!-- FOOTER -->
+        <footer class="absolute bottom-0 bg-transparent text-center py-8">
+            <p class="text-gray-500 text-sm">&copy; 2025 GigCopilot. The Driver's Edge.</p>
+            <div class="mt-2 text-xs text-gray-600">
+                <a href="#" class="hover:text-gray-400">About</a> &middot;
+                <a href="#" class="hover:text-gray-400">Privacy</a> &middot;
+                <a href="mailto:letshelpstrategize@gmail.com" class="hover:text-gray-400">Contact</a>
+            </div>
+        </footer>
+    </div>
+    </main>
+
 
 <script>
-    // JavaScript to animate the progress bar
-    let progress = 0;
-    const progressBar = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.section');
+        let currentSectionIndex = 0;
+        let isScrolling = false;
 
-    function updateProgress() {
-        progress = (progress + 1) % 31; // Increment progress and reset to 0 after 100%
-        progressBar.style.width = progress + '%';
-        progressText.textContent = `Building... ${progress}%`;
-    }
+        // Set initial state
+        sections[0].classList.add('active');
+        // Trigger animations for the first section immediately
+        const firstSectionFades = sections[0].querySelectorAll('.fade-in');
+        firstSectionFades.forEach(el => el.classList.add('visible'));
+        const firstGrid = sections[0].querySelector('.grid-background');
+        if (firstGrid) setTimeout(() => firstGrid.style.opacity = '0.05', 500);
 
-    setInterval(updateProgress, 100); // Update every 100ms for a smooth animation
+
+        function goToSection(index) {
+            if (index < 0 || index >= sections.length) {
+                return;
+            }
+
+            const currentSection = sections[currentSectionIndex];
+            const nextSection = sections[index];
+
+            if (currentSection) {
+                 // Remove visible class from elements in the outgoing section
+                currentSection.querySelectorAll('.fade-in, .equation-item, .x-factor-icon').forEach(el => el.classList.remove('visible'));
+                currentSection.classList.remove('active');
+                 const noiseOut = currentSection.querySelector('.noise-overlay');
+                 if (noiseOut) noiseOut.style.opacity = '0';
+            }
+
+            if (nextSection) {
+                nextSection.classList.add('active');
+
+                // Trigger animations for the incoming section's elements
+                const fadeInElements = nextSection.querySelectorAll('.fade-in');
+                fadeInElements.forEach(el => el.classList.add('visible'));
+
+                // Special animation triggers for the solution section
+                if (nextSection.id === 'solution') {
+                    const equationItems = nextSection.querySelectorAll('.equation-item');
+                    equationItems.forEach((item, idx) => {
+                        setTimeout(() => item.classList.add('visible'), 500 + idx * 150);
+                    });
+                    const xFactorIcons = nextSection.querySelectorAll('.x-factor-icon');
+                    xFactorIcons.forEach((icon, idx) => {
+                        setTimeout(() => icon.classList.add('visible'), 1000 + idx * 100);
+                    });
+                }
+
+                // Special animation triggers for the noise overlay
+                if (nextSection.id === 'problem') {
+                    const noiseIn = nextSection.querySelector('.noise-overlay');
+                    if (noiseIn) setTimeout(() => noiseIn.style.opacity = '0.08', 500);
+                }
+            }
+
+            currentSectionIndex = index;
+        }
+
+        function handleScroll(deltaY) {
+            if (isScrolling) return;
+            isScrolling = true;
+
+            if (deltaY > 0) { // Scrolling down
+                goToSection(currentSectionIndex + 1);
+            } else { // Scrolling up
+                goToSection(currentSectionIndex - 1);
+            }
+
+            setTimeout(() => {
+                isScrolling = false;
+            }, 1500); // Cooldown period to match animation
+        }
+
+        // Mouse wheel event
+        window.addEventListener('wheel', (event) => {
+            handleScroll(event.deltaY);
+        });
+
+        // Keyboard navigation
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown') {
+                handleScroll(1);
+            } else if (event.key === 'ArrowUp') {
+                handleScroll(-1);
+            }
+        });
+
+        // Touch navigation for mobile
+        let touchstartY = 0;
+        window.addEventListener('touchstart', (event) => {
+            touchstartY = event.touches[0].clientY;
+        });
+
+        window.addEventListener('touchend', (event) => {
+            const touchendY = event.changedTouches[0].clientY;
+            const deltaY = touchstartY - touchendY;
+            if (Math.abs(deltaY) > 50) { // Threshold for swipe
+                handleScroll(deltaY);
+            }
+        });
+
+
+        // Navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetIndex = parseInt(e.target.getAttribute('data-index'));
+                if (!isNaN(targetIndex) && !isScrolling) {
+                     isScrolling = true;
+                     goToSection(targetIndex);
+                      setTimeout(() => { isScrolling = false; }, 1500);
+                }
+            });
+        });
+    });
 </script>
-<footer>
-    <p>&copy; 2025 GigCopilot. All Rights Reserved.</p>
-    <p>
-        Have questions? <a href="mailto:letshelpstrategize@gmail.com">Contact Us</a>
-    </p>
-</footer>
-<script src="scripts.js"></script>
+
+
 </body>
 </html>
+
