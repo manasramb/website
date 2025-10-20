@@ -89,22 +89,36 @@
         .grid-background { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; animation: pan-grid 60s linear infinite; z-index: -1; opacity: 0; transition: opacity 1.5s ease; }
         @keyframes pan-grid { 0% { background-position: 0 0; } 100% { background-position: 500px 500px; } }
         .noise-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: 200px; opacity: 0; z-index: 1; transition: opacity 1.5s ease-in-out; pointer-events: none; }
-        .equation-item { opacity: 0; transform: scale(0.9); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .equation-item.visible { opacity: 1; transform: scale(1); }
+        .equation-item, .plan-tab, .plan-content { opacity: 0; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .equation-item.visible, .plan-tab.visible, .plan-content.visible { opacity: 1; transform: scale(1); }
         .x-factor-icon { opacity: 0; transition: opacity 0.5s ease; filter: grayscale(1); }
         .x-factor-icon.visible { opacity: 1; filter: grayscale(0); }
+
+        #ai-animation { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; transition: opacity 1s ease-in-out; }
+        #agent.active #ai-animation { opacity: 0.3; }
+
+        .plan-tabs button {
+            background: transparent; border: 1px solid #444; color: #888;
+            transition: all 0.3s ease;
+        }
+        .plan-tabs button.active {
+            color: #FFD700; border-color: #FFD700; background-color: rgba(255, 215, 0, 0.1);
+        }
+        .plan-content { display: none; }
+        .plan-content.active { display: block; }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- NAVIGATION -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-[#111]/50 backdrop-blur-md border-b border-white/10">
+        <!-- RESPONSIVE FIX: Added responsive padding -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
                     <span class="font-black text-xl md:text-2xl text-[#FFD700] accent-glow-gold">GIGCOPILOT</span>
                 </div>
-                <!-- Hide text links on small screens for a cleaner look -->
+                <!-- RESPONSIVE FIX: Hide text links on small screens for a cleaner look -->
                 <div class="hidden sm:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="#problem" data-index="1" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">The Noise</a>
@@ -114,6 +128,7 @@
                     </div>
                 </div>
                  <div class="flex-shrink-0">
+                    <!-- RESPONSIVE FIX: Adjusted button padding and text size for smaller screens -->
                     <a href="#signup" data-index="5" class="nav-link bg-[#FFD700] text-black font-bold py-2 px-3 sm:px-5 rounded-full text-xs sm:text-sm hover:bg-white transition duration-300 whitespace-nowrap">CLAIM ADVANTAGE</a>
                 </div>
             </div>
@@ -125,7 +140,9 @@
     <div id="hero" class="section active">
         <div class="sonar-ping"></div>
         <div class="grid-background" style="background-size: 75px 75px; animation: pan-grid 45s linear infinite;"></div>
+        <!-- RESPONSIVE FIX: Added container to center content and control width -->
         <div class="text-center z-10 w-full max-w-4xl mx-auto">
+            <!-- RESPONSIVE FIX: Added responsive text sizes -->
             <h1 class="fade-in text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter uppercase text-white">
                 TRANSCEND THE <span class="text-[#FFD700] accent-glow-gold">NOISE</span>
             </h1>
@@ -139,7 +156,9 @@
     <!-- SECTION 2: THE PROBLEM / "THE NOISE" -->
     <div id="problem" class="section">
         <div class="noise-overlay"></div>
+        <!-- RESPONSIVE FIX: Added container to center content -->
         <div class="z-10 text-center w-full max-w-4xl mx-auto fade-in">
+             <!-- RESPONSIVE FIX: Added responsive text sizes -->
              <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white glitch" data-text="The Illusion of Gross Pay.">The Illusion of <span class="text-[#D42E43]">Gross Pay</span>.</h2>
              <p class="mt-6 text-base sm:text-lg text-gray-400">
                 Platform heatmaps are a mirage. Gross pay is a vanity metric. Your true costs—fuel, tires, depreciation, the brutal <span class="text-white font-semibold">"Arizona Factor"</span>—are the invisible currents pulling you under. You're reacting, not planning.
@@ -149,10 +168,11 @@
 
     <!-- SECTION 3: THE SOLUTION / "THE CLARITY" -->
     <div id="solution" class="section space-y-8 md:space-y-16">
+        <!-- RESPONSIVE FIX: Added container to center content -->
         <div class="w-full max-w-5xl mx-auto text-center fade-in">
             <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">Clarity from Chaos.</h2>
             <p class="mt-6 text-base sm:text-lg text-gray-400">We calculate everything. So you can profit from anything.</p>
-
+            <!-- RESPONSIVE FIX: Changed to flexbox for better mobile stacking -->
             <div class="mt-8 md:mt-12 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-center text-sm sm:text-lg font-semibold">
                 <div class="equation-item p-3 md:p-4 bg-white/5 rounded-lg border border-white/10">FARE + SURGE</div>
                 <div class="text-xl md:text-2xl text-[#D42E43] equation-item" style="transition-delay: 100ms;">-</div>
@@ -161,65 +181,86 @@
                 <div class="equation-item p-4 md:p-6 bg-[#FFD700]/10 rounded-lg border border-[#FFD700] text-[#FFD700] text-xl md:text-2xl" style="transition-delay: 300ms;">NET PROFIT</div>
             </div>
         </div>
-
+        <!-- RESPONSIVE FIX: Added container to center content -->
         <div class="w-full max-w-5xl mx-auto text-center fade-in" style="transition-delay: 300ms;">
             <h3 class="text-2xl sm:text-3xl font-bold text-white">Our AI Perceives the Unseen.</h3>
             <p class="mt-4 text-sm sm:text-base text-gray-400">Your advantage comes from data nobody else connects.</p>
-            <div class="mt-8 grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
-                <!-- X-Factor Icons -->
-                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 100ms;">
-                    <svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                    <span class="mt-2 text-xs md:text-sm font-medium">SATURATION</span>
-                </div>
-                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 200ms;">
-                    <svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-                    <span class="mt-2 text-xs md:text-sm font-medium">WAYMO</span>
-                </div>
-                 <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 300ms;">
-                    <svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <span class="mt-2 text-xs md:text-sm font-medium">EVENTS</span>
-                </div>
-                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 400ms;">
-                    <svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                    <span class="mt-2 text-xs md:text-sm font-medium">WEATHER</span>
-                </div>
-                 <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 500ms;">
-                    <svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                    <span class="mt-2 text-xs md:text-sm font-medium">SAFETY</span>
-                </div>
-                 <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 600ms;">
-                     <svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span class="mt-2 text-xs md:text-sm font-medium">TRAFFIC</span>
-                </div>
+            <!-- RESPONSIVE FIX: Grid columns adjust for screen size -->
+            <div class="mt-8 grid grid-cols-3 sm:grid-cols-6 gap-6 md:gap-8">
+                <!-- X-Factor Icons (no changes needed inside) -->
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 100ms;"><svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg><span class="mt-2 text-xs md:text-sm font-medium">SATURATION</span></div>
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 200ms;"><svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg><span class="mt-2 text-xs md:text-sm font-medium">WAYMO</span></div>
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 300ms;"><svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="mt-2 text-xs md:text-sm font-medium">EVENTS</span></div>
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 400ms;"><svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="mt-2 text-xs md:text-sm font-medium">WEATHER</span></div>
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 500ms;"><svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg><span class="mt-2 text-xs md:text-sm font-medium">SAFETY</span></div>
+                <div class="x-factor-icon flex flex-col items-center" style="transition-delay: 600ms;"><svg class="h-10 w-10 md:h-12 md:w-12 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="mt-2 text-xs md:text-sm font-medium">TRAFFIC</span></div>
             </div>
         </div>
     </div>
 
     <!-- SECTION 4: THE AGENT -->
     <div id="agent" class="section">
-        <div class="fade-in w-full max-w-5xl text-center mx-auto">
+        <canvas id="ai-animation"></canvas>
+        <div class="fade-in w-full max-w-5xl text-center mx-auto z-10">
             <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">From Data to <span class="text-[#FFD700] accent-glow-gold">Dharma</span>.</h2>
             <p class="mt-6 text-base sm:text-lg text-gray-400 max-w-3xl mx-auto">
-                GigCopilot is more than a map. It's your personal AI Strategist. Give it your goal and receive an optimal path for your shift, a plan aligned with true effective earnings.
+                GigCopilot is more than a map. It's your personal AI Strategist. Give it your goal and receive optimal paths for your shift, aligned with true effective earnings.
             </p>
 
-            <div class="mt-8 md:mt-12 bg-white/5 border border-white/10 rounded-xl p-6 md:p-8 shadow-2xl shadow-black/50 max-w-3xl mx-auto">
-                <div class="text-left font-mono text-xs sm:text-sm">
-                    <p id="typewriter-text" class="text-gray-400"></p>
-                    <div id="agent-plan" class="mt-6" style="display: none;">
-                        <p class="text-white font-bold text-base sm:text-lg">PATH A: The Sunset Prosperity Plan</p>
+            <div id="agent-ui-container" class="mt-8 md:mt-12 bg-white/5 border border-white/10 rounded-xl p-6 md:p-8 shadow-2xl shadow-black/50 max-w-3xl mx-auto" style="opacity:0; transition: opacity 0.8s ease 0.5s;">
+                <p id="typewriter-text" class="text-left font-mono text-xs sm:text-sm text-gray-400"></p>
+
+                <div id="agent-plan-container" class="mt-4" style="display: none;">
+                    <div class="plan-tabs flex justify-center gap-2 mb-4">
+                        <button data-plan="plan-a" class="plan-tab active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold">Path A: Power Player</button>
+                        <button data-plan="plan-b" class="plan-tab px-4 py-2 rounded-full text-xs sm:text-sm font-semibold">Path B: Steady Earner</button>
+                        <button data-plan="plan-c" class="plan-tab px-4 py-2 rounded-full text-xs sm:text-sm font-semibold">Path C: Event Chaser</button>
+                    </div>
+
+                    <!-- PLAN A -->
+                    <div id="plan-a" class="plan-content active text-left font-mono text-xs sm:text-sm">
+                        <p class="text-white font-bold text-base sm:text-lg">PATH A: The Power Player</p>
                         <div class="mt-2 pl-4 border-l-2 border-[#FFD700]">
-                            <p class="text-white"><strong class="text-[#FFD700]">LEG 1:</strong> 5:00PM - 7:00PM @ Downtown Phoenix</p>
-                            <p class="text-gray-400 ml-4 sm:ml-8">REASON: Capture peak evening commute + happy hour.</p>
-                            <p class="text-white mt-2"><strong class="text-[#FFD700]">LEG 2:</strong> 7:15PM - 9:15PM @ Footprint Center Area</p>
-                            <p class="text-gray-400 ml-4 sm:ml-8">REASON: Service pre-concert demand for the Suns game.</p>
+                            <p class="text-white"><strong class="text-[#FFD700]">LEG 1:</strong> 5-7PM @ Downtown Phoenix</p>
+                            <p class="text-gray-400 ml-4 sm:ml-8">REASON: Capture peak evening commute.</p>
+                            <p class="text-white mt-2"><strong class="text-[#FFD700]">LEG 2:</strong> 7:15-9:15PM @ Footprint Center</p>
+                            <p class="text-gray-400 ml-4 sm:ml-8">REASON: Service pre-concert demand.</p>
                         </div>
                         <div class="mt-4 border-t border-white/10 pt-4 space-y-1">
                              <p><span class="text-gray-400">TOTAL EARNINGS:</span> <span class="text-white font-bold">$112.50</span></p>
                              <p><span class="text-gray-400">TRUE EFFECTIVE RATE:</span> <span class="text-[#FFD700] font-bold text-base sm:text-lg">$25.00/hr</span></p>
-                             <p><span class="text-yellow-400">AWARENESS:</span> <span class="text-gray-300">Heavy traffic expected downtown until 6:30 PM.</span></p>
+                             <p><span class="text-yellow-400">AWARENESS:</span> <span class="text-gray-300">Heavy traffic until 6:30 PM.</span></p>
                         </div>
                     </div>
+                    <!-- PLAN B -->
+                     <div id="plan-b" class="plan-content text-left font-mono text-xs sm:text-sm">
+                        <p class="text-white font-bold text-base sm:text-lg">PATH B: The Steady Earner</p>
+                         <div class="mt-2 pl-4 border-l-2 border-[#FFD700]">
+                            <p class="text-white"><strong class="text-[#FFD700]">LEG 1:</strong> 4:30-6:30PM @ North Scottsdale</p>
+                            <p class="text-gray-400 ml-4 sm:ml-8">REASON: High-value residential & airport trips.</p>
+                            <p class="text-white mt-2"><strong class="text-[#FFD700]">LEG 2:</strong> 6:45-8:45PM @ Kierland Commons</p>
+                            <p class="text-gray-400 ml-4 sm:ml-8">REASON: Consistent demand from restaurants.</p>
+                        </div>
+                        <div class="mt-4 border-t border-white/10 pt-4 space-y-1">
+                             <p><span class="text-gray-400">TOTAL EARNINGS:</span> <span class="text-white font-bold">$98.00</span></p>
+                             <p><span class="text-gray-400">TRUE EFFECTIVE RATE:</span> <span class="text-[#FFD700] font-bold text-base sm:text-lg">$21.50/hr</span></p>
+                             <p><span class="text-yellow-400">AWARENESS:</span> <span class="text-gray-300">Lower surge, more consistent rides.</span></p>
+                        </div>
+                    </div>
+                     <!-- PLAN C -->
+                     <div id="plan-c" class="plan-content text-left font-mono text-xs sm:text-sm">
+                        <p class="text-white font-bold text-base sm:text-lg">PATH C: The Event Chaser</p>
+                         <div class="mt-2 pl-4 border-l-2 border-[#FFD700]">
+                            <p class="text-white"><strong class="text-[#FFD700]">LEG 1:</strong> 6:00PM - 9:00PM @ State Farm Stadium</p>
+                            <p class="text-gray-400 ml-4 sm:ml-8">REASON: High surge potential from game egress.</p>
+                        </div>
+                        <div class="mt-4 border-t border-white/10 pt-4 space-y-1">
+                             <p><span class="text-gray-400">TOTAL EARNINGS:</span> <span class="text-white font-bold">$125.00 (High Variance)</span></p>
+                             <p><span class="text-gray-400">TRUE EFFECTIVE RATE:</span> <span class="text-[#FFD700] font-bold text-base sm:text-lg">$28.00/hr (Potential)</span></p>
+                             <p><span class="text-yellow-400">AWARENESS:</span> <span class="text-gray-300">Extreme traffic risk. High-reward.</span></p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -264,13 +305,68 @@
         const sections = document.querySelectorAll('.section');
         let currentSectionIndex = 0;
         let isScrolling = false;
+
         const typewriterElement = document.getElementById('typewriter-text');
-        const agentPlanElement = document.getElementById('agent-plan');
+        const agentUiContainer = document.getElementById('agent-ui-container');
+        const agentPlanContainer = document.getElementById('agent-plan-container');
         const typewriterText = '> AI STRATEGIST: GENERATING OPTIMAL PATHS...';
         let typewriterTimeout;
 
+        const canvas = document.getElementById('ai-animation');
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
+        let nodes = [];
+        const maxNodes = 50;
+
+        function setupCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            nodes = [];
+            for (let i = 0; i < maxNodes; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    radius: Math.random() * 1.5 + 1
+                });
+            }
+        }
+
+        function drawCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach(node => {
+                node.x += node.vx;
+                node.y += node.vy;
+                if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 215, 0, 0.6)';
+                ctx.fill();
+            });
+
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dist = Math.sqrt(Math.pow(nodes[i].x - nodes[j].x, 2) + Math.pow(nodes[i].y - nodes[j].y, 2));
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${1 - dist / 150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+            animationFrameId = requestAnimationFrame(drawCanvas);
+        }
+
+        window.addEventListener('resize', setupCanvas);
+
         function runTypewriter() {
             if (typewriterElement) {
+                agentUiContainer.style.opacity = '1';
                 typewriterElement.innerHTML = '';
                 typewriterElement.classList.add('typewriter');
                 let i = 0;
@@ -278,11 +374,16 @@
                     if (i < typewriterText.length) {
                         typewriterElement.innerHTML += typewriterText.charAt(i);
                         i++;
-                        typewriterTimeout = setTimeout(type, 50);
+                        typewriterTimeout = setTimeout(type, 30);
                     } else {
                         typewriterElement.classList.remove('typewriter');
-                        if (agentPlanElement) {
-                            setTimeout(() => { agentPlanElement.style.display = 'block'; }, 300);
+                        if (agentPlanContainer) {
+                            setTimeout(() => {
+                                agentPlanContainer.style.display = 'block';
+                                document.querySelectorAll('.plan-tab, .plan-content').forEach((el, idx) => {
+                                    setTimeout(() => el.classList.add('visible'), idx * 100);
+                                });
+                            }, 500);
                         }
                     }
                 }
@@ -292,14 +393,16 @@
 
         function resetTypewriter() {
             clearTimeout(typewriterTimeout);
+            if(agentUiContainer) agentUiContainer.style.opacity = '0';
             if(typewriterElement) typewriterElement.innerHTML = '';
-            if(agentPlanElement) agentPlanElement.style.display = 'none';
+            if(agentPlanContainer) agentPlanContainer.style.display = 'none';
+             document.querySelectorAll('.plan-tab, .plan-content').forEach(el => {
+                el.classList.remove('visible');
+            });
         }
 
         sections[0].classList.add('active');
         sections[0].querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-        const firstGrid = sections[0].querySelector('.grid-background');
-        if (firstGrid) setTimeout(() => firstGrid.style.opacity = '0.05', 500);
 
         function goToSection(index) {
             if (index < 0 || index >= sections.length) return;
@@ -310,7 +413,10 @@
                 currentSection.classList.remove('active');
                 const noiseOut = currentSection.querySelector('.noise-overlay');
                 if (noiseOut) noiseOut.style.opacity = '0';
-                if (currentSection.id === 'agent') resetTypewriter();
+                if (currentSection.id === 'agent') {
+                    cancelAnimationFrame(animationFrameId);
+                    resetTypewriter();
+                }
             }
             if (nextSection) {
                 nextSection.classList.add('active');
@@ -328,6 +434,8 @@
                     if (noiseIn) setTimeout(() => noiseIn.style.opacity = '0.08', 500);
                 }
                 if (nextSection.id === 'agent') {
+                    setupCanvas();
+                    drawCanvas();
                     setTimeout(runTypewriter, 800);
                 }
             }
@@ -361,6 +469,16 @@
                      goToSection(targetIndex);
                      setTimeout(() => { isScrolling = false; }, 1500);
                 }
+            });
+        });
+        const tabs = document.querySelectorAll('.plan-tab');
+        const contents = document.querySelectorAll('.plan-content');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.plan).classList.add('active');
             });
         });
     });
