@@ -70,7 +70,7 @@
 
         /* 1. Hero Sonar Ping - ADJUSTED FOR VISIBILITY */
         @keyframes sonar {
-            0% { transform: scale(0.5); opacity: 0.7; }
+            0% { transform: scale(0.0); opacity: 0.7; }
             70% { opacity: 0.3; }
             100% { transform: scale(1.5); opacity: 0; }
         }
@@ -82,11 +82,11 @@
             border-radius: 50%;
             width: 800px;
             height: 800px;
-            animation: sonar 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation: sonar 6.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
             z-index: 0;
             opacity: 0;
         }
-        #hero.active .sonar-ping { animation-delay: 1.2s; }
+        #hero.active .sonar-ping { animation-delay: 2s; }
 
 
         /* 2. Problem Text Glitch */
