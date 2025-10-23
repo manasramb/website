@@ -106,6 +106,18 @@
         }
         .plan-content { display: none; }
         .plan-content.active { display: block; }
+
+        #signup-feedback {
+            margin-top: 1rem;
+            min-height: 1.5rem; /* Reserve space */
+            font-weight: 500;
+            transition: color 0.3s ease; /* Smooth color change */
+        }
+        .feedback-success { color: #4ade80; /* Green */ }
+        .feedback-error { color: #f87171; /* Red */ }
+        .feedback-info { color: #60a5fa; /* Blue */ }
+        .feedback-submitting { color: #9ca3af; /* Gray */ }
+
     </style>
 </head>
 <body class="antialiased">
@@ -284,19 +296,13 @@
             <p class="mt-6 text-base sm:text-lg text-gray-400">
                 Join the waitlist for exclusive access to GigCopilot. Be the first to know, the first to prosper.
             </p>
-            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md mx-auto">
-                <input type="email" placeholder="your.email@provider.com" class="w-full sm:w-auto flex-grow bg-white/10 border border-white/20 rounded-full px-6 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-[#FFD700] focus:outline-none transition duration-300">
-                <button class="w-full sm:w-auto bg-[#D42E43] text-white font-bold py-3 px-8 rounded-full hover:bg-red-500 transition duration-300 shimmer-btn">Unlock Prosperity</button>
-            </div>
+            <form id="waitlist-form" class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md mx-auto">
+                <input type="email" id="waitlist-email" placeholder="your.email@provider.com" required class="w-full sm:w-auto flex-grow bg-white/10 border border-white/20 rounded-full px-6 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-[#FFD700] focus:outline-none transition duration-300">
+                <button type="submit" id="waitlist-submit" class="w-full sm:w-auto bg-[#D42E43] text-white font-bold py-3 px-8 rounded-full hover:bg-red-500 transition duration-300 shimmer-btn">Unlock Prosperity</button>
+            </form>
+            <div id="signup-feedback" class="mt-4 text-sm">&nbsp;</div>
         </div>
-        <footer class="absolute bottom-0 left-0 right-0 bg-transparent text-center py-6 sm:py-8">
-            <p class="text-gray-500 text-xs sm:text-sm">&copy; 2025 GigCopilot. The Driver's Edge.</p>
-            <div class="mt-2 text-xs text-gray-600 space-x-4">
-                <a href="#" class="hover:text-gray-400">About</a>
-                <a href="#" class="hover:text-gray-400">Privacy</a>
-                <a href="mailto:letshelpstrategize@gmail.com" class="hover:text-gray-400">Contact</a>
-            </div>
-        </footer>
+        <footer class="absolute bottom-0 left-0 right-0 bg-transparent text-center py-6 sm:py-8">...</footer>
     </div>
     </main>
 
@@ -482,6 +488,92 @@
             });
         });
     });
+
+    // --- ADDED: Waitlist Form Submission Logic ---
+        const waitlistForm = document.getElementById('waitlist-form');
+        const emailInput = document.getElementById('waitlist-email');
+        const submitButton = document.getElementById('waitlist-submit');
+        const feedbackDiv = document.getElementById('signup-feedback');
+
+        // --- IMPORTANT: Replace with your actual deployed API URL ---
+        // const apiUrl = 'YOUR_DEPLOYED_CLOUD_RUN_URL/waitlist'; // Production URL
+        const apiUrl = 'http://127.0.0.1:8000/waitlist'; // Local testing URL
+
+        if (waitlistForm && emailInput && submitButton && feedbackDiv) { // Check if elements exist
+            waitlistForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Stop default form submission
+                feedbackDiv.textContent = 'Submitting...';
+                feedbackDiv.className = 'feedback-submitting'; // Use className to replace classes
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50', 'cursor-not-allowed'); // Visual feedback
+
+                const email = emailInput.value.trim();
+
+                // Basic client-side validation
+                if (!email || !email.includes('@') || !email.includes('.')) {
+                    feedbackDiv.textContent = 'Please enter a valid email address.';
+                    feedbackDiv.className = 'feedback-error';
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                    return;
+                }
+
+                try {
+                    console.log(`Sending email to API: ${email}`); // Debugging
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // Add any other headers if needed
+                        },
+                        body: JSON.stringify({ email: email }),
+                    });
+
+                    // It's safer to check response.ok first, then try to parse JSON
+                    if (!response.ok) {
+                        // Try to parse error detail from API response
+                        let errorDetail = 'An unexpected error occurred.';
+                        try {
+                            const errorResult = await response.json();
+                            errorDetail = errorResult.detail || errorDetail;
+                        } catch (parseError) {
+                             console.error("Could not parse error response:", parseError);
+                             errorDetail = `Server returned status ${response.status}. Please try again.`
+                        }
+
+                         if (response.status === 409) { // Conflict (already exists)
+                            feedbackDiv.textContent = errorDetail;
+                            feedbackDiv.className = 'feedback-info'; // Blue for info
+                        } else if (response.status === 422) { // Validation error
+                             feedbackDiv.textContent = 'Invalid email format. Please check your entry.'; // More specific message
+                             feedbackDiv.className = 'feedback-error';
+                        }
+                         else { // Other server errors
+                            feedbackDiv.textContent = errorDetail;
+                            feedbackDiv.className = 'feedback-error';
+                        }
+
+                    } else {
+                        // SUCCESS case (201 Created)
+                        const result = await response.json();
+                        feedbackDiv.textContent = result.message || 'Success! You are on the list.';
+                        feedbackDiv.className = 'feedback-success';
+                        emailInput.value = ''; // Clear input on success
+                    }
+
+                } catch (error) {
+                    console.error('Network or fetch error:', error);
+                    feedbackDiv.textContent = 'Could not connect to the server. Please check your connection and try again.';
+                    feedbackDiv.className = 'feedback-error';
+                } finally {
+                    submitButton.disabled = false; // Re-enable button
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        } else {
+             console.error("Waitlist form elements not found!"); // Debugging
+        }
+        // --- END ADDED Waitlist Logic ---
 </script>
 
 </body>
