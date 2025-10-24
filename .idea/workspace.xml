@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="wording update on all screens">
+    <list default="true" id="4290fb7b-f76c-4e0d-ae9b-0311fea166e7" name="Changes" comment="integrating the /waitlist post api to the index.html code so that the waitlist emails can be saved to mongoDb">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -258,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761113271173</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="integrating the /waitlist post api to the index.html code so that the waitlist emails can be saved to mongoDb">
+      <option name="closed" value="true" />
+      <created>1761220730029</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1761220730030</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +304,7 @@
     <MESSAGE value="adding animations 2.0" />
     <MESSAGE value="adding more path option to the AI sectrion of the page" />
     <MESSAGE value="wording update on all screens" />
-    <option name="LAST_COMMIT_MESSAGE" value="wording update on all screens" />
+    <MESSAGE value="integrating the /waitlist post api to the index.html code so that the waitlist emails can be saved to mongoDb" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrating the /waitlist post api to the index.html code so that the waitlist emails can be saved to mongoDb" />
   </component>
 </project>

@@ -495,9 +495,9 @@
         const submitButton = document.getElementById('waitlist-submit');
         const feedbackDiv = document.getElementById('signup-feedback');
 
-        // --- IMPORTANT: Replace with your actual deployed API URL ---
-        // const apiUrl = 'YOUR_DEPLOYED_CLOUD_RUN_URL/waitlist'; // Production URL
-        const apiUrl = 'http://127.0.0.1:8000/waitlist'; // Local testing URL
+
+        const apiUrl = 'https://gigcopilot-web-service-xxxx-uc.a.run.app/waitlist';
+
 
         if (waitlistForm && emailInput && submitButton && feedbackDiv) { // Check if elements exist
             waitlistForm.addEventListener('submit', async (event) => {
